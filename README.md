@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AtlasBuild CMS — Enterprise Construction Management Platform
 
-## Getting Started
+![Next.js 16](https://img.shields.io/badge/Next.js-15%2F16-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![Prisma](https://img.shields.io/badge/Prisma-7.0-2D3748?style=for-the-badge&logo=prisma)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon_Cloud-336791?style=for-the-badge&logo=postgresql)
+![Cloudflare R2](https://img.shields.io/badge/Cloudflare-R2_Storage-F38020?style=for-the-badge&logo=cloudflare)
+![Vercel](https://img.shields.io/badge/Vercel-Production_Deploy-000000?style=for-the-badge&logo=vercel)
+![WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG_2.1_AA-success?style=for-the-badge)
 
-First, run the development server:
+**AtlasBuild CMS** is an enterprise-grade civil infrastructure and construction management platform designed for general contractors, site engineers, and executive client stakeholders. Built on Next.js 16, TypeScript, Prisma, and PostgreSQL, the platform delivers a high-contrast **"Obsidian Flux"** glassmorphic interface, real-time schedule tracking, secure blueprint document distribution, and automated RFP cost estimating.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🎯 Purpose & Problem Statement
+
+Civil engineering projects—such as high-density commercial towers, structural bridges, and logistics hubs—require real-time transparency between field engineers and executive clients. Traditional tools suffer from fragmented communication, bloated PDF distribution, and high file egress fees.
+
+**AtlasBuild CMS** solves this by providing:
+1. **Executive Client Portals**: Live interactive workspace dashboards showing phase milestones, Gantt schedules, and field photo updates.
+2. **Secure CAD & Blueprint Distribution**: Zero-egress Cloudflare R2 asset storage with pre-signed temporary download URLs.
+3. **Role-Based Access Control (RBAC)**: Strict permission boundaries for `SUPER_ADMIN`, `PROJECT_MANAGER`, `CLIENT_VIEWER`, and `SAFETY_INSPECTOR`.
+4. **Civil Estimating Engine**: Automated RFP proposal calculators accounting for foundation piling types, labor rates, and contingency margins.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology | Key Responsibility |
+| :--- | :--- | :--- |
+| **Framework** | **Next.js 16 (App Router)** | Server Components, Server Actions, Dynamic API Routes. |
+| **Language** | **TypeScript 5.0** | End-to-end type safety across database models and API payloads. |
+| **Database** | **PostgreSQL (Neon Cloud)** | Serverless database with auto-scaling connection pooling. |
+| **ORM** | **Prisma ORM v7** | Schema migrations, typed queries, and automated database seeding. |
+| **Object Storage** | **Cloudflare R2** | CAD blueprint drawings & document storage with **zero egress fees**. |
+| **Styling & UI** | **Tailwind CSS v4 + Vanilla CSS** | Custom "Obsidian Flux" design system with hardware-accelerated glassmorphism. |
+| **Authentication** | **Auth.js / NextAuth & Crypto** | HMAC invitation tokens, bcrypt password hashing, session tokens. |
+| **Testing** | **Vitest + Playwright** | Unit tests, RFP calculator validation, E2E browser automation. |
+| **Deployment** | **Vercel + GitHub Actions** | Global edge network hosting with automated CI/CD quality gates. |
+
+---
+
+## 📐 System Architecture Diagram
+
+```mermaid
+flowchart TD
+    subgraph ClientLayer ["Client Layer & Edge CDN"]
+        Browser["Executive Client / Field Engineer Browser"]
+        CloudflareEdge["Cloudflare Enterprise CDN (DNS / DDoS / SSL)"]
+    end
+
+    subgraph HostingPlatform ["Production Hosting (Vercel)"]
+        NextServer["Next.js 16 Server Components & Actions"]
+        APIRoutes["Secure REST API Routes (/api/v1/*)"]
+    end
+
+    subgraph DataStorage ["Database & Storage Engine"]
+        NeonDB[("Neon Cloud PostgreSQL Database")]
+        R2Bucket[("Cloudflare R2 Bucket (CAD Blueprints & Assets)")]
+    end
+
+    Browser -->|HTTPS Request| CloudflareEdge
+    CloudflareEdge --> NextServer
+    NextServer --> APIRoutes
+    NextServer -->|Prisma Client| NeonDB
+    NextServer -->|Presigned URLs| R2Bucket
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Obsidian Flux Glassmorphism**: Premium dark-mode UI tailored for high contrast and WCAG 2.1 AA legibility.
+* **Interactive Blueprint Viewer**: Filter structural drawings, MEP plans, and site surveys with instant pre-signed URL downloads.
+* **Safety Log Feed & EMR Tracking**: Real-time Experience Modification Rate (EMR) index tracking and incident reporting.
+* **Automated Proposal Estimator**: Input SQFT and foundation parameters to generate instant cost breakdowns.
+* **Cryptographic Client Onboarding**: Secure token invitation links that bind client accounts to specific project workspaces atomically.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Local Development Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Prerequisites
+* **Node.js**: `v20.0.0` or higher
+* **npm**: `v10.0.0` or higher
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Clone & Install
+```bash
+git clone https://github.com/azwar7/atlasbuild-cms.git
+cd atlasbuild-cms
+npm install
+```
 
-## Deploy on Vercel
+### 3. Environment Variables Setup
+Create a `.env` file in the root directory:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Database (Neon PostgreSQL)
+DATABASE_URL="postgresql://user:pass@ep-cool-site.neon.tech/neondb?sslmode=require"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Authentication
+NEXTAUTH_SECRET="your_nextauth_jwt_secret_here"
+NEXTAUTH_URL="http://localhost:3000"
+INVITE_TOKEN_SECRET="your_invite_token_secret"
+
+# Cloudflare R2 Storage
+STORAGE_PROVIDER="R2"
+R2_ACCOUNT_ID="your_cloudflare_account_id"
+R2_ACCESS_KEY_ID="your_r2_access_key"
+R2_SECRET_ACCESS_KEY="your_r2_secret_key"
+R2_BUCKET_NAME="atlasbuild-cms"
+R2_PUBLIC_DOMAIN="https://pub-your-id.r2.dev"
+```
+
+### 4. Database Migration & Seeding
+Sync your PostgreSQL database schema and seed demo civil infrastructure projects:
+
+```bash
+# Push schema to database
+npx prisma db push
+
+# Seed initial projects, users, phases, and activity logs
+npx tsx prisma/seed.ts
+```
+
+### 5. Run Development Server
+```bash
+npm run dev
+```
+Open `http://localhost:3000` in your browser.
+
+---
+
+## 🧪 Testing & Verification
+
+Run typechecks, linting, and unit test suites:
+
+```bash
+# TypeScript compilation check
+npx tsc --noEmit
+
+# ESLint validation
+npm run lint
+
+# Run Vitest unit tests
+npx vitest run
+```
+
+---
+
+## 🌐 Production Deployment (Vercel)
+
+1. Push your code to your GitHub repository.
+2. Go to **[vercel.com/new](https://vercel.com/new)** and import `azwar7/atlasbuild-cms`.
+3. Configure your Environment Variables (`DATABASE_URL`, `NEXTAUTH_SECRET`, `STORAGE_PROVIDER`, `R2_*`).
+4. Click **Deploy**. Vercel will build and host your application globally.
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
