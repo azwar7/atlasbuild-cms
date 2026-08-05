@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import InitialSplashScreen from "@/components/InitialSplashScreen";
 
 export const metadata: Metadata = {
   title: {
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-background font-body text-on-surface antialiased relative min-h-screen">
+        <InitialSplashScreen />
         <NextTopLoader 
           color="#7dd3fc"
           initialPosition={0.08}
