@@ -131,8 +131,8 @@ export default async function ProjectSafetyPage({
         {/* Safety Log Feed */}
         <div className="flex flex-col gap-4 pt-2">
           
-          {/* Crisp Section Header Card */}
-          <div className="flex items-center justify-between bg-[#0f1524]/95 backdrop-blur-[24px] border border-[#7dd3fc]/40 p-4 rounded-xl shadow-[0_0_15px_rgba(125,211,252,0.15)]">
+          {/* Glassmorphism Section Header Card */}
+          <div className="flex items-center justify-between bg-[#7dd3fc]/10 backdrop-blur-[24px] border border-[#7dd3fc]/30 p-4 rounded-xl shadow-[0_0_15px_rgba(125,211,252,0.1)]">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-[#7dd3fc]/20 border border-[#7dd3fc]/40 flex items-center justify-center text-[#7dd3fc]">
                 <span className="material-symbols-outlined text-[20px]">health_and_safety</span>
