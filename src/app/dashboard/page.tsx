@@ -107,7 +107,7 @@ export default async function AdminDashboardPage() {
             </Link>
 
             <Link 
-              href="/quotes" 
+              href="/dashboard/leads" 
               className="flex items-center justify-between px-4 py-2.5 rounded-lg text-white/70 hover:bg-[#7dd3fc]/10 hover:text-white transition-all font-headline text-sm"
             >
               <div className="flex items-center">
