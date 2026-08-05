@@ -1,0 +1,290 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/client"
+}
+
+enum Role {
+  ADMIN
+  PROJECT_MANAGER
+  CLIENT
+}
+
+enum ProjectSector {
+  COMMERCIAL
+  RESIDENTIAL
+  CIVIL
+  INFRASTRUCTURE
+  HEALTHCARE
+  EDUCATION
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  COMPLETED
+  ON_HOLD
+  CANCELLED
+}
+
+enum PhaseStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  BLOCKED
+}
+
+enum QuoteStatus {
+  PENDING
+  REVIEWING
+  CONTACTED
+  ARCHIVED
+}
+
+enum ApplicationStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  INTERVIEW_SCHEDULED
+  REJECTED
+  HIRED
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+  REVOKED
+}
+
+enum AssetType {
+  IMAGE
+  BLUEPRINT
+  RESUME
+  OTHER
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  passwordHash  String
+  role          Role            @default(CLIENT)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?       // Soft Delete Index
+
+  // Audit Trail Metadata
+  createdBy     String?
+  updatedBy     String?
+
+  // Relations
+  managedProjects Project[]     @relation("ProjectManagerRelation")
+  assignedProjects Project[]    @relation("ClientProjectRelation")
+  applications    Application[]
+  blogPosts       BlogPost[]
+  activityLogs    ActivityLog[]
+  uploadedAssets  Asset[]
+}
+
+model Project {
+  id              String          @id @default(cuid())
+  title           String
+  description     String          @db.Text
+  sector          ProjectSector
+  location        String
+  latitude        Float?
+  longitude       Float?
+  status          ProjectStatus   @default(PLANNING)
+  budget          Decimal         @db.Decimal(15, 2)
+  squareFootage   Int
+  startDate       DateTime
+  endDate         DateTime?
+  completionRate  Int             @default(0) // Percentage 0-100
+  emrScore        Float           @default(1.0)
+  bondingLimit    Decimal?        @db.Decimal(15, 2)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  deletedAt       DateTime?
+
+  // Audit Trail Metadata
+  createdBy       String?
+  updatedBy       String?
+
+  // Relations
+  projectManagerId String
+  projectManager   User           @relation("ProjectManagerRelation", fields: [projectManagerId], references: [id])
+  clients          User[]         @relation("ClientProjectRelation")
+  phases           ProjectPhase[]
+  feedUpdates      FeedUpdate[]
+  testimonials     Testimonial[]
+  assets           Asset[]
+}
+
+model ProjectPhase {
+  id          String      @id @default(cuid())
+  projectId   String
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  description String      @db.Text
+  startDate   DateTime
+  endDate     DateTime?
+  status      PhaseStatus @default(PENDING)
+  sortOrder   Int
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+
+  // Audit Trail Metadata
+  createdBy   String?
+  updatedBy   String?
+}
+
+model FeedUpdate {
+  id          String    @id @default(cuid())
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  content     String    @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  // Audit Trail Metadata
+  createdBy   String?
+  updatedBy   String?
+
+  // Relations
+  assets      Asset[]
+}
+
+model Asset {
+  id           String      @id @default(cuid())
+  url          String
+  key          String      // Cloudinary File Public ID
+  mimeType     String
+  size         Int
+  assetType    AssetType
+  createdAt    DateTime    @default(now())
+  deletedAt    DateTime?
+
+  // Relations
+  projectId    String?
+  project      Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  feedUpdateId String?
+  feedUpdate   FeedUpdate? @relation(fields: [feedUpdateId], references: [id], onDelete: SetNull)
+  uploadedById String?
+  uploadedBy   User?       @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+}
+
+model QuoteRequest {
+  id            String      @id @default(cuid())
+  name          String
+  email         String
+  company       String?
+  projectTitle  String
+  sector        ProjectSector
+  budgetRange   String
+  location      String
+  description   String      @db.Text
+  blueprintUrl  String?
+  status        QuoteStatus @default(PENDING)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deletedAt     DateTime?
+}
+
+model CareerOpportunity {
+  id           String        @id @default(cuid())
+  title        String
+  department   String        
+  location     String
+  type         String        
+  description  String        @db.Text
+  requirements String        @db.Text
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+
+  // Relations
+  applications Application[]
+}
+
+model Application {
+  id                  String            @id @default(cuid())
+  careerOpportunityId String
+  careerOpportunity   CareerOpportunity @relation(fields: [careerOpportunityId], references: [id], onDelete: Cascade)
+  userId              String?
+  user                User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name                String
+  email               String
+  resumeUrl           String
+  coverLetter         String?           @db.Text
+  status              ApplicationStatus @default(SUBMITTED)
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String    @db.Text
+  content     String    @db.Text
+  coverImage  String
+  published   Boolean   @default(false)
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}
+
+model Testimonial {
+  id         String    @id @default(cuid())
+  projectId  String?
+  project    Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  clientName String
+  company    String
+  role       String   
+  quote      String    @db.Text
+  rating     Int       @default(5)
+  createdAt  DateTime  @default(now())
+  deletedAt  DateTime?
+}
+
+model ContactRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model InvitationToken {
+  id              String           @id @default(cuid())
+  token           String           @unique
+  email           String
+  projectId       String
+  invitingAdminId String
+  status          InvitationStatus @default(PENDING)
+  createdAt       DateTime         @default(now())
+  expiresAt       DateTime
+  usedAt          DateTime?
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String   // e.g. "USER_LOGIN", "PROJECT_CREATE", "INVITE_SENT"
+  entityType String   
+  entityId   String?  
+  details    String?  @db.Text // Encapsulates mutated fields payload
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+}
