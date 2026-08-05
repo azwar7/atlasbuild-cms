@@ -130,11 +130,21 @@ export default async function ProjectSafetyPage({
 
         {/* Safety Log Feed */}
         <div className="flex flex-col gap-4 pt-2">
-          <div className="flex items-center gap-2.5 px-1">
-            <span className="material-symbols-outlined text-[#7dd3fc] text-[22px]">health_and_safety</span>
-            <h2 className="font-headline text-xl text-white font-bold tracking-tight">
-              Daily Safety & OSHA Compliance Telemetry
-            </h2>
+          
+          {/* Crisp Section Header Card */}
+          <div className="flex items-center justify-between bg-[#0f1524]/95 backdrop-blur-[24px] border border-[#7dd3fc]/40 p-4 rounded-xl shadow-[0_0_15px_rgba(125,211,252,0.15)]">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-[#7dd3fc]/20 border border-[#7dd3fc]/40 flex items-center justify-center text-[#7dd3fc]">
+                <span className="material-symbols-outlined text-[20px]">health_and_safety</span>
+              </div>
+              <h2 className="font-headline text-base md:text-lg text-white font-bold tracking-tight">
+                Daily Safety & OSHA Compliance Telemetry
+              </h2>
+            </div>
+            <span className="text-[10px] font-mono font-bold bg-[#7dd3fc]/20 text-[#7dd3fc] px-3 py-1 rounded-full border border-[#7dd3fc]/40 flex items-center gap-1.5 shadow-[0_0_8px_rgba(125,211,252,0.2)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#7dd3fc] animate-pulse"></span>
+              LIVE TELEMETRY
+            </span>
           </div>
 
           {safetyLogs.map((log) => (
