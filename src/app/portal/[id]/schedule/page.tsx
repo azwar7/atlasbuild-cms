@@ -90,23 +90,7 @@ export default async function ProjectSchedulePage({
       </header>
 
       {/* Main Content */}
-      <main className="pt-28 pb-16 px-6 md:px-12 max-w-container-max mx-auto w-full flex-1 flex flex-col gap-8">
-        
-        {/* Sub-Navigation Glass Tabs */}
-        <div className="flex items-center gap-2 bg-[#0f1524]/90 backdrop-blur-[24px] border border-[#7dd3fc]/30 p-2 rounded-xl shadow-[0_0_15px_rgba(125,211,252,0.1)] w-fit">
-          <Link href={`/portal/${id}`} className="px-4 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 font-bold text-sm transition-all">
-            Project Overview
-          </Link>
-          <Link href={`/portal/${id}/blueprints`} className="px-4 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 font-bold text-sm transition-all">
-            Documents
-          </Link>
-          <Link href={`/portal/${id}/schedule`} className="px-4 py-2 rounded-lg bg-[#7dd3fc] text-[#001f2e] font-bold text-sm shadow-[0_0_12px_rgba(125,211,252,0.4)]">
-            Schedule
-          </Link>
-          <Link href={`/portal/${id}/safety`} className="px-4 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 font-bold text-sm transition-all">
-            Safety Logs
-          </Link>
-        </div>
+      <main className="pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto w-full flex-1 flex flex-col gap-6">
 
         {/* Schedule Header Glass Card */}
         <section className="bg-[#7dd3fc]/10 backdrop-blur-[24px] border border-[#7dd3fc]/30 shadow-[0_0_15px_rgba(125,211,252,0.1)] rounded-xl p-6 lg:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
