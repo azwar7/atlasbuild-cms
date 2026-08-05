@@ -31,7 +31,7 @@ export default function AccessRolesPage() {
               Project Portfolio
             </Link>
 
-            <Link href="/quotes" className="flex items-center px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-md text-sm font-semibold">
+            <Link href="/dashboard/leads" className="flex items-center px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-md text-sm font-semibold">
               <span className="material-symbols-outlined mr-3 text-[20px]">mail</span>
               Lead Inbox
             </Link>
