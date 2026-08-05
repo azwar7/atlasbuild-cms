@@ -21,7 +21,9 @@ export function middleware(request: NextRequest) {
   );
 
   if ((isAdminRoute || isPortalRoute) && !sessionCookie) {
-    // Session check hook
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("callbackUrl", pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
   return response;

@@ -67,9 +67,9 @@ export default function LandingPage() {
               </Link>
 
               <Link 
-                href="/dashboard" 
+                href="/login" 
                 className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center backdrop-blur-md text-primary hover:bg-primary/30 transition-all"
-                title="Admin Operations Control Board"
+                title="Account Login / Portal Access"
               >
                 <span className="material-symbols-outlined text-[18px]">person</span>
               </Link>
