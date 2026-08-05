@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useTopLoader } from 'nextjs-toploader';
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
@@ -21,11 +22,13 @@ export default function LoginPage() {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   
   const router = useRouter();
+  const loader = useTopLoader();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    loader.start();
 
     try {
       const res = await fetch('/api/auth/login', {
@@ -36,6 +39,7 @@ export default function LoginPage() {
 
       const json = await res.json();
       if (!res.ok) {
+        loader.done();
         throw new Error(json.error?.message || 'Authentication failed.');
       }
 
@@ -46,6 +50,7 @@ export default function LoginPage() {
         router.push('/portal/proj-1');
       }
     } catch (err: unknown) {
+      loader.done();
       const errorObj = err as Error;
       setError(errorObj.message || 'Server connection failed.');
     } finally {
@@ -58,6 +63,7 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
     setSuccessMsg(null);
+    loader.start();
 
     try {
       const res = await fetch('/api/auth/complete-invite', {
@@ -72,15 +78,18 @@ export default function LoginPage() {
 
       const json = await res.json();
       if (!res.ok) {
+        loader.done();
         throw new Error(json.error?.message || 'Account activation failed.');
       }
 
+      loader.done();
       setSuccessMsg('Account activated successfully! Redirecting to login...');
       setTimeout(() => {
         setActiveTab('login');
         setSuccessMsg(null);
       }, 2000);
     } catch (err: unknown) {
+      loader.done();
       const errorObj = err as Error;
       setError(errorObj.message || 'Invitation token verification failed.');
     } finally {
