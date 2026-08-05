@@ -36,9 +36,9 @@ jobs:
           DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/atlasbuild_test"
 
   deploy-production:
-    name: Production Deployment (Vercel)
+    name: Production Deployment (Vercel Integration)
     needs: quality-gate
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && secrets.VERCEL_TOKEN != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
