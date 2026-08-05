@@ -136,11 +136,6 @@ export default function InitialSplashScreen() {
 
           </div>
 
-          {/* Footer Infrastructure Badge */}
-          <div className="absolute bottom-8 text-[10px] font-mono text-white/30 tracking-widest uppercase">
-            OSHA Compliant • ISO 27001 Certified • AtlasBuild v2.4
-          </div>
-
         </motion.div>
       )}
     </AnimatePresence>
