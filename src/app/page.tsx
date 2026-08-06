@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FeaturedServicesShowcase from "@/components/FeaturedServicesShowcase";
+import LandingHeader from "@/components/LandingHeader";
 
 export const revalidate = 0;
 
@@ -18,65 +19,8 @@ export default function LandingPage() {
       {/* Main Content Container above background layer (z-10) */}
       <div className="relative z-10 min-h-screen flex flex-col">
 
-        {/* Glassmorphic Header */}
-        <header className="fixed top-0 w-full z-50 bg-[#0f131c]/70 backdrop-blur-[20px] border-b border-outline-variant/30">
-          <div className="h-16 w-full px-6 lg:px-12 flex items-center justify-between relative">
-            
-            {/* Far Left: Logo & Brand */}
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-3">
-                <img 
-                  src="/images/logo.png" 
-                  alt="AtlasBuild Logo" 
-                  className="h-8 w-auto object-contain" 
-                />
-                <span className="text-xl font-headline font-bold tracking-tight text-white">AtlasBuild</span>
-              </Link>
-            </div>
-
-            {/* Middle: Navigation Links */}
-            <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
-              <Link 
-                href="/portfolio" 
-                className="transition-colors text-primary font-semibold text-sm font-label"
-              >
-                Portfolio
-              </Link>
-              <Link 
-                href="/careers" 
-                className="text-sm font-label text-on-surface-variant hover:text-white transition-colors"
-              >
-                Careers
-              </Link>
-              <Link 
-                href="/about" 
-                className="text-sm font-label text-on-surface-variant hover:text-white transition-colors"
-              >
-                About
-              </Link>
-            </nav>
-
-            {/* Far Right: Actions */}
-            <div className="flex items-center gap-6">
-              <Link 
-                href="/quotes" 
-                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-primary text-sm font-label hover:bg-primary/30 transition-all backdrop-blur-md font-semibold"
-              >
-                Secure Portal
-                <span className="material-symbols-outlined text-[18px]">lock</span>
-              </Link>
-
-              <Link 
-                href="/login" 
-                className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center backdrop-blur-md text-primary hover:bg-primary/30 transition-all"
-                title="Account Login / Portal Access"
-              >
-                <span className="material-symbols-outlined text-[18px]">person</span>
-              </Link>
-            </div>
-
-          </div>
-        </header>
+        {/* Dynamic Auth-Aware Header */}
+        <LandingHeader />
 
         {/* Main Page Content */}
         <main className="w-full pt-16 flex-1">

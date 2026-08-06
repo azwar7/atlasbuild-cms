@@ -1,12 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTopLoader } from 'nextjs-toploader';
+import { useAuth } from '@/context/AuthContext';
 
-export default function LoginPage() {
-  const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
+import { Suspense } from 'react';
+
+function LoginFormContent() {
+  const searchParams = useSearchParams();
+  const initialTab = searchParams.get('tab') === 'signup' ? 'signup' : 'login';
+  const [activeTab, setActiveTab] = useState<'login' | 'signup'>(initialTab);
   
   // Login state
   const [email, setEmail] = useState('');
@@ -23,6 +28,15 @@ export default function LoginPage() {
   
   const router = useRouter();
   const loader = useTopLoader();
+  const { user, isAuthenticated, loading: authLoading, getDashboardUrl, checkAuth } = useAuth();
+
+  // Redirect authenticated users away from /login to their role-specific dashboard
+  useEffect(() => {
+    if (!authLoading && isAuthenticated && user) {
+      const dest = getDashboardUrl(user);
+      router.replace(dest);
+    }
+  }, [authLoading, isAuthenticated, user, getDashboardUrl, router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,12 +57,13 @@ export default function LoginPage() {
         throw new Error(json.error?.message || 'Authentication failed.');
       }
 
-      const role = json.data?.user?.role;
-      if (role === 'ADMIN' || role === 'PROJECT_MANAGER') {
-        router.push('/dashboard');
-      } else {
-        router.push('/portal/proj-1');
-      }
+      await checkAuth();
+      window.dispatchEvent(new Event('atlasbuild_auth_changed'));
+
+      const userObj = json.data?.user;
+      const targetUrl = getDashboardUrl(userObj);
+      loader.done();
+      router.push(targetUrl);
     } catch (err: unknown) {
       loader.done();
       const errorObj = err as Error;
@@ -256,5 +271,17 @@ export default function LoginPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#0A0E1A] flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-[#7dd3fc] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    }>
+      <LoginFormContent />
+    </Suspense>
   );
 }

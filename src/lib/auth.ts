@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
-const JWT_SECRET = process.env.JWT_SECRET || "atlasbuild-secret-key-change-in-production-2026";
+const JWT_SECRET = process.env.JWT_SECRET || "atlasbuild_super_secret_fallback_key";
 export const TOKEN_COOKIE_NAME = "atlasbuild_session";
 
 export interface UserTokenPayload {
