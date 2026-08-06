@@ -107,6 +107,19 @@ export default async function AdminDashboardPage() {
             </Link>
 
             <Link 
+              href="/dashboard/rfps" 
+              className="flex items-center justify-between px-4 py-2.5 rounded-lg text-white/70 hover:bg-[#7dd3fc]/10 hover:text-white transition-all font-headline text-sm"
+            >
+              <div className="flex items-center">
+                <span className="material-symbols-outlined mr-3 text-[20px]">assignment_turned_in</span>
+                RFP Proposals
+              </div>
+              <span className="bg-[#7dd3fc] text-[#001f2e] text-[10px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+                {activeRFPs || 2}
+              </span>
+            </Link>
+
+            <Link 
               href="/dashboard/leads" 
               className="flex items-center justify-between px-4 py-2.5 rounded-lg text-white/70 hover:bg-[#7dd3fc]/10 hover:text-white transition-all font-headline text-sm"
             >
@@ -159,19 +172,22 @@ export default async function AdminDashboardPage() {
                 {/* Top Metrics Panel */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   
-                  {/* Metric 1 */}
-                  <div className="bg-[#7dd3fc]/10 backdrop-blur-[24px] border border-[#7dd3fc]/30 shadow-[0_0_15px_rgba(125,211,252,0.1)] rounded-xl p-6 relative overflow-hidden group hover:shadow-[0_0_25px_rgba(125,211,252,0.2)] transition-all duration-500">
+                  {/* Metric 1 - RFP Proposals Management Shortcut */}
+                  <Link href="/dashboard/rfps" className="bg-[#7dd3fc]/10 backdrop-blur-[24px] border border-[#7dd3fc]/30 shadow-[0_0_15px_rgba(125,211,252,0.1)] rounded-xl p-6 relative overflow-hidden group hover:shadow-[0_0_25px_rgba(125,211,252,0.2)] transition-all duration-500 block cursor-pointer">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#7dd3fc]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative z-10 flex flex-col h-full justify-between gap-6">
                       <div className="flex justify-between items-start">
-                        <h2 className="font-headline text-sm text-[#7dd3fc] uppercase tracking-wider">Total Site Lead Actions</h2>
+                        <h2 className="font-headline text-sm text-[#7dd3fc] uppercase tracking-wider flex items-center gap-1.5">
+                          Active RFP Proposals
+                          <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </h2>
                         <div className="w-10 h-10 rounded-full bg-[#7dd3fc]/20 border border-[#7dd3fc]/30 flex items-center justify-center text-[#7dd3fc] shadow-[inset_1px_1px_0_rgba(255,255,255,0.1)]">
-                          <span className="material-symbols-outlined text-[20px]">insights</span>
+                          <span className="material-symbols-outlined text-[20px]">assignment_turned_in</span>
                         </div>
                       </div>
                       <div>
                         <div className="font-display text-white text-[48px] font-bold leading-tight group-hover:scale-105 origin-left transition-transform duration-500">
-                          {activeRFPs || 144} <span className="font-headline text-lg text-white/70 ml-2 font-normal">RFPs</span>
+                          {activeRFPs || 5} <span className="font-headline text-lg text-white/70 ml-2 font-normal">Submissions</span>
                         </div>
                       </div>
                       <div className="w-full h-12">
@@ -187,7 +203,7 @@ export default async function AdminDashboardPage() {
                         </svg>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
                   {/* Metric 2 */}
                   <div className="bg-[#7dd3fc]/10 backdrop-blur-[24px] border border-[#7dd3fc]/30 shadow-[0_0_15px_rgba(125,211,252,0.1)] rounded-xl p-6 relative overflow-hidden group hover:shadow-[0_0_25px_rgba(125,211,252,0.2)] transition-all duration-500">

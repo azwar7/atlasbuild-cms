@@ -449,6 +449,16 @@ export default function LeadInboxPage() {
                 Dashboard
               </Link>
 
+              <Link href="/dashboard/rfps" className="flex items-center justify-between px-4 py-2.5 rounded-lg text-white/70 hover:bg-[#7dd3fc]/10 hover:text-white transition-all font-headline text-sm">
+                <div className="flex items-center">
+                  <span className="material-symbols-outlined mr-3 text-[20px]">assignment_turned_in</span>
+                  RFP Proposals
+                </div>
+                <span className="bg-[#7dd3fc] text-[#001f2e] text-[10px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+                  2
+                </span>
+              </Link>
+
               <Link href="/dashboard/leads" className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#7dd3fc]/20 text-[#7dd3fc] font-semibold border border-[#7dd3fc]/30 shadow-[0_0_15px_rgba(125,211,252,0.15)] transition-all">
                 <div className="flex items-center">
                   <span className="material-symbols-outlined mr-3 text-[20px]">inbox</span>

@@ -55,6 +55,8 @@ export const QuoteStatus = {
   PENDING: 'PENDING',
   REVIEWING: 'REVIEWING',
   CONTACTED: 'CONTACTED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
   ARCHIVED: 'ARCHIVED'
 } as const
 

@@ -6,9 +6,10 @@ export const TOKEN_COOKIE_NAME = "atlasbuild_session";
 
 export interface UserTokenPayload {
   id: string;
+  sub?: string;
   email: string;
-  role: "SUPER_ADMIN" | "PROJECT_MANAGER" | "CLIENT_EXEC" | "FIELD_ENGINEER";
-  name: string;
+  role: "ADMIN" | "SUPER_ADMIN" | "PROJECT_MANAGER" | "CLIENT" | "CLIENT_EXEC" | "FIELD_ENGINEER" | string;
+  name?: string;
 }
 
 /**

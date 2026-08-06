@@ -31,6 +31,16 @@ export default function AccessRolesPage() {
               Project Portfolio
             </Link>
 
+            <Link href="/dashboard/rfps" className="flex items-center justify-between px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-md text-sm font-semibold">
+              <div className="flex items-center">
+                <span className="material-symbols-outlined mr-3 text-[20px]">assignment_turned_in</span>
+                RFP Proposals
+              </div>
+              <span className="bg-[#7dd3fc] text-[#001f2e] text-[10px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+                2
+              </span>
+            </Link>
+
             <Link href="/dashboard/leads" className="flex items-center px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-md text-sm font-semibold">
               <span className="material-symbols-outlined mr-3 text-[20px]">mail</span>
               Lead Inbox

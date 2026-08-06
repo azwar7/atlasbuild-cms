@@ -1536,6 +1536,10 @@ export const QuoteRequestScalarFieldEnum = {
   description: 'description',
   blueprintUrl: 'blueprintUrl',
   status: 'status',
+  reviewedByAdminId: 'reviewedByAdminId',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  adminNotes: 'adminNotes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'

@@ -13,6 +13,14 @@ export interface CreateQuoteData {
   blueprintUrl?: string
 }
 
+export interface UpdateEvaluationData {
+  status: QuoteStatus
+  reviewedByAdminId?: string
+  reviewedAt?: Date
+  rejectionReason?: string | null
+  adminNotes?: string | null
+}
+
 export class QuoteRepository {
   async create(data: CreateQuoteData) {
     return prisma.quoteRequest.create({
@@ -28,6 +36,11 @@ export class QuoteRepository {
         id,
         deletedAt: null,
       },
+      include: {
+        reviewedByAdmin: {
+          select: { id: true, name: true, email: true },
+        },
+      },
     })
   }
 
@@ -36,6 +49,11 @@ export class QuoteRepository {
       where: {
         deletedAt: null,
         ...(status ? { status } : {}),
+      },
+      include: {
+        reviewedByAdmin: {
+          select: { id: true, name: true, email: true },
+        },
       },
       orderBy: { createdAt: 'desc' },
     })
@@ -46,6 +64,35 @@ export class QuoteRepository {
       where: { id },
       data: { status },
     })
+  }
+
+  async updateEvaluation(id: string, data: UpdateEvaluationData) {
+    return prisma.quoteRequest.update({
+      where: { id },
+      data: {
+        status: data.status,
+        reviewedByAdminId: data.reviewedByAdminId,
+        reviewedAt: data.reviewedAt || new Date(),
+        rejectionReason: data.rejectionReason,
+        adminNotes: data.adminNotes,
+      },
+      include: {
+        reviewedByAdmin: {
+          select: { id: true, name: true, email: true },
+        },
+      },
+    })
+  }
+
+  async getCounts() {
+    const total = await prisma.quoteRequest.count({ where: { deletedAt: null } })
+    const pending = await prisma.quoteRequest.count({ where: { deletedAt: null, status: 'PENDING' } })
+    const approved = await prisma.quoteRequest.count({ where: { deletedAt: null, status: 'APPROVED' } })
+    const rejected = await prisma.quoteRequest.count({ where: { deletedAt: null, status: 'REJECTED' } })
+    const reviewing = await prisma.quoteRequest.count({ where: { deletedAt: null, status: 'REVIEWING' } })
+    const archived = await prisma.quoteRequest.count({ where: { deletedAt: null, status: 'ARCHIVED' } })
+
+    return { total, pending, approved, rejected, reviewing, archived }
   }
 
   async softDelete(id: string) {

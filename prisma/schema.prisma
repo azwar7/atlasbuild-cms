@@ -41,6 +41,8 @@ enum QuoteStatus {
   PENDING
   REVIEWING
   CONTACTED
+  APPROVED
+  REJECTED
   ARCHIVED
 }
 
@@ -87,6 +89,7 @@ model User {
   blogPosts       BlogPost[]
   activityLogs    ActivityLog[]
   uploadedAssets  Asset[]
+  reviewedQuotes  QuoteRequest[] @relation("AdminReviewedQuotes")
 }
 
 model Project {
@@ -180,20 +183,28 @@ model Asset {
 }
 
 model QuoteRequest {
-  id            String      @id @default(cuid())
-  name          String
-  email         String
-  company       String?
-  projectTitle  String
-  sector        ProjectSector
-  budgetRange   String
-  location      String
-  description   String      @db.Text
-  blueprintUrl  String?
-  status        QuoteStatus @default(PENDING)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  deletedAt     DateTime?
+  id                String        @id @default(cuid())
+  name              String
+  email             String
+  company           String?
+  projectTitle      String
+  sector            ProjectSector
+  budgetRange       String
+  location          String
+  description       String        @db.Text
+  blueprintUrl      String?
+  status            QuoteStatus   @default(PENDING)
+
+  // Admin Review & Approval Tracking
+  reviewedByAdminId String?
+  reviewedByAdmin   User?         @relation("AdminReviewedQuotes", fields: [reviewedByAdminId], references: [id], onDelete: SetNull)
+  reviewedAt        DateTime?
+  rejectionReason   String?       @db.Text
+  adminNotes        String?       @db.Text
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  deletedAt         DateTime?
 }
 
 model CareerOpportunity {

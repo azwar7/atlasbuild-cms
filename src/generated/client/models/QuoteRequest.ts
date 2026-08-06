@@ -36,6 +36,10 @@ export type QuoteRequestMinAggregateOutputType = {
   description: string | null
   blueprintUrl: string | null
   status: $Enums.QuoteStatus | null
+  reviewedByAdminId: string | null
+  reviewedAt: Date | null
+  rejectionReason: string | null
+  adminNotes: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -53,6 +57,10 @@ export type QuoteRequestMaxAggregateOutputType = {
   description: string | null
   blueprintUrl: string | null
   status: $Enums.QuoteStatus | null
+  reviewedByAdminId: string | null
+  reviewedAt: Date | null
+  rejectionReason: string | null
+  adminNotes: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -70,6 +78,10 @@ export type QuoteRequestCountAggregateOutputType = {
   description: number
   blueprintUrl: number
   status: number
+  reviewedByAdminId: number
+  reviewedAt: number
+  rejectionReason: number
+  adminNotes: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -89,6 +101,10 @@ export type QuoteRequestMinAggregateInputType = {
   description?: true
   blueprintUrl?: true
   status?: true
+  reviewedByAdminId?: true
+  reviewedAt?: true
+  rejectionReason?: true
+  adminNotes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -106,6 +122,10 @@ export type QuoteRequestMaxAggregateInputType = {
   description?: true
   blueprintUrl?: true
   status?: true
+  reviewedByAdminId?: true
+  reviewedAt?: true
+  rejectionReason?: true
+  adminNotes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -123,6 +143,10 @@ export type QuoteRequestCountAggregateInputType = {
   description?: true
   blueprintUrl?: true
   status?: true
+  reviewedByAdminId?: true
+  reviewedAt?: true
+  rejectionReason?: true
+  adminNotes?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -213,6 +237,10 @@ export type QuoteRequestGroupByOutputType = {
   description: string
   blueprintUrl: string | null
   status: $Enums.QuoteStatus
+  reviewedByAdminId: string | null
+  reviewedAt: Date | null
+  rejectionReason: string | null
+  adminNotes: string | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -251,9 +279,14 @@ export type QuoteRequestWhereInput = {
   description?: Prisma.StringFilter<"QuoteRequest"> | string
   blueprintUrl?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   status?: Prisma.EnumQuoteStatusFilter<"QuoteRequest"> | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  rejectionReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  adminNotes?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  reviewedByAdmin?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type QuoteRequestOrderByWithRelationInput = {
@@ -268,9 +301,14 @@ export type QuoteRequestOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   blueprintUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  reviewedByAdminId?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  adminNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewedByAdmin?: Prisma.UserOrderByWithRelationInput
 }
 
 export type QuoteRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -288,9 +326,14 @@ export type QuoteRequestWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"QuoteRequest"> | string
   blueprintUrl?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   status?: Prisma.EnumQuoteStatusFilter<"QuoteRequest"> | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  rejectionReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  adminNotes?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  reviewedByAdmin?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type QuoteRequestOrderByWithAggregationInput = {
@@ -305,6 +348,10 @@ export type QuoteRequestOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   blueprintUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  reviewedByAdminId?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  adminNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -328,6 +375,10 @@ export type QuoteRequestScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"QuoteRequest"> | string
   blueprintUrl?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
   status?: Prisma.EnumQuoteStatusWithAggregatesFilter<"QuoteRequest"> | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
+  rejectionReason?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  adminNotes?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
@@ -345,9 +396,13 @@ export type QuoteRequestCreateInput = {
   description: string
   blueprintUrl?: string | null
   status?: $Enums.QuoteStatus
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  reviewedByAdmin?: Prisma.UserCreateNestedOneWithoutReviewedQuotesInput
 }
 
 export type QuoteRequestUncheckedCreateInput = {
@@ -362,6 +417,10 @@ export type QuoteRequestUncheckedCreateInput = {
   description: string
   blueprintUrl?: string | null
   status?: $Enums.QuoteStatus
+  reviewedByAdminId?: string | null
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -379,9 +438,13 @@ export type QuoteRequestUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedByAdmin?: Prisma.UserUpdateOneWithoutReviewedQuotesNestedInput
 }
 
 export type QuoteRequestUncheckedUpdateInput = {
@@ -396,6 +459,10 @@ export type QuoteRequestUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -413,6 +480,10 @@ export type QuoteRequestCreateManyInput = {
   description: string
   blueprintUrl?: string | null
   status?: $Enums.QuoteStatus
+  reviewedByAdminId?: string | null
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -430,6 +501,9 @@ export type QuoteRequestUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -447,9 +521,23 @@ export type QuoteRequestUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type QuoteRequestListRelationFilter = {
+  every?: Prisma.QuoteRequestWhereInput
+  some?: Prisma.QuoteRequestWhereInput
+  none?: Prisma.QuoteRequestWhereInput
+}
+
+export type QuoteRequestOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type QuoteRequestCountOrderByAggregateInput = {
@@ -464,6 +552,10 @@ export type QuoteRequestCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   blueprintUrl?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reviewedByAdminId?: Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
+  adminNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -481,6 +573,10 @@ export type QuoteRequestMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   blueprintUrl?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reviewedByAdminId?: Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
+  adminNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -498,13 +594,229 @@ export type QuoteRequestMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   blueprintUrl?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reviewedByAdminId?: Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
+  adminNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
 }
 
+export type QuoteRequestCreateNestedManyWithoutReviewedByAdminInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput> | Prisma.QuoteRequestCreateWithoutReviewedByAdminInput[] | Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput | Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput[]
+  createMany?: Prisma.QuoteRequestCreateManyReviewedByAdminInputEnvelope
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+}
+
+export type QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput> | Prisma.QuoteRequestCreateWithoutReviewedByAdminInput[] | Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput | Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput[]
+  createMany?: Prisma.QuoteRequestCreateManyReviewedByAdminInputEnvelope
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+}
+
+export type QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput> | Prisma.QuoteRequestCreateWithoutReviewedByAdminInput[] | Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput | Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput[]
+  upsert?: Prisma.QuoteRequestUpsertWithWhereUniqueWithoutReviewedByAdminInput | Prisma.QuoteRequestUpsertWithWhereUniqueWithoutReviewedByAdminInput[]
+  createMany?: Prisma.QuoteRequestCreateManyReviewedByAdminInputEnvelope
+  set?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  disconnect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  delete?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  update?: Prisma.QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput | Prisma.QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput[]
+  updateMany?: Prisma.QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput | Prisma.QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput[]
+  deleteMany?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
+}
+
+export type QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput> | Prisma.QuoteRequestCreateWithoutReviewedByAdminInput[] | Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput | Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput[]
+  upsert?: Prisma.QuoteRequestUpsertWithWhereUniqueWithoutReviewedByAdminInput | Prisma.QuoteRequestUpsertWithWhereUniqueWithoutReviewedByAdminInput[]
+  createMany?: Prisma.QuoteRequestCreateManyReviewedByAdminInputEnvelope
+  set?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  disconnect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  delete?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  update?: Prisma.QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput | Prisma.QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput[]
+  updateMany?: Prisma.QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput | Prisma.QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput[]
+  deleteMany?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
+}
+
 export type EnumQuoteStatusFieldUpdateOperationsInput = {
   set?: $Enums.QuoteStatus
+}
+
+export type QuoteRequestCreateWithoutReviewedByAdminInput = {
+  id?: string
+  name: string
+  email: string
+  company?: string | null
+  projectTitle: string
+  sector: $Enums.ProjectSector
+  budgetRange: string
+  location: string
+  description: string
+  blueprintUrl?: string | null
+  status?: $Enums.QuoteStatus
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type QuoteRequestUncheckedCreateWithoutReviewedByAdminInput = {
+  id?: string
+  name: string
+  email: string
+  company?: string | null
+  projectTitle: string
+  sector: $Enums.ProjectSector
+  budgetRange: string
+  location: string
+  description: string
+  blueprintUrl?: string | null
+  status?: $Enums.QuoteStatus
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type QuoteRequestCreateOrConnectWithoutReviewedByAdminInput = {
+  where: Prisma.QuoteRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput>
+}
+
+export type QuoteRequestCreateManyReviewedByAdminInputEnvelope = {
+  data: Prisma.QuoteRequestCreateManyReviewedByAdminInput | Prisma.QuoteRequestCreateManyReviewedByAdminInput[]
+  skipDuplicates?: boolean
+}
+
+export type QuoteRequestUpsertWithWhereUniqueWithoutReviewedByAdminInput = {
+  where: Prisma.QuoteRequestWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuoteRequestUpdateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedUpdateWithoutReviewedByAdminInput>
+  create: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput>
+}
+
+export type QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput = {
+  where: Prisma.QuoteRequestWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuoteRequestUpdateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedUpdateWithoutReviewedByAdminInput>
+}
+
+export type QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput = {
+  where: Prisma.QuoteRequestScalarWhereInput
+  data: Prisma.XOR<Prisma.QuoteRequestUpdateManyMutationInput, Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminInput>
+}
+
+export type QuoteRequestScalarWhereInput = {
+  AND?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
+  OR?: Prisma.QuoteRequestScalarWhereInput[]
+  NOT?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
+  id?: Prisma.StringFilter<"QuoteRequest"> | string
+  name?: Prisma.StringFilter<"QuoteRequest"> | string
+  email?: Prisma.StringFilter<"QuoteRequest"> | string
+  company?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  projectTitle?: Prisma.StringFilter<"QuoteRequest"> | string
+  sector?: Prisma.EnumProjectSectorFilter<"QuoteRequest"> | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFilter<"QuoteRequest"> | string
+  location?: Prisma.StringFilter<"QuoteRequest"> | string
+  description?: Prisma.StringFilter<"QuoteRequest"> | string
+  blueprintUrl?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  status?: Prisma.EnumQuoteStatusFilter<"QuoteRequest"> | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  rejectionReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  adminNotes?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+}
+
+export type QuoteRequestCreateManyReviewedByAdminInput = {
+  id?: string
+  name: string
+  email: string
+  company?: string | null
+  projectTitle: string
+  sector: $Enums.ProjectSector
+  budgetRange: string
+  location: string
+  description: string
+  blueprintUrl?: string | null
+  status?: $Enums.QuoteStatus
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type QuoteRequestUpdateWithoutReviewedByAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  sector?: Prisma.EnumProjectSectorFieldUpdateOperationsInput | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type QuoteRequestUncheckedUpdateWithoutReviewedByAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  sector?: Prisma.EnumProjectSectorFieldUpdateOperationsInput | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  sector?: Prisma.EnumProjectSectorFieldUpdateOperationsInput | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -521,9 +833,14 @@ export type QuoteRequestSelect<ExtArgs extends runtime.Types.Extensions.Internal
   description?: boolean
   blueprintUrl?: boolean
   status?: boolean
+  reviewedByAdminId?: boolean
+  reviewedAt?: boolean
+  rejectionReason?: boolean
+  adminNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
 }, ExtArgs["result"]["quoteRequest"]>
 
 export type QuoteRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -538,9 +855,14 @@ export type QuoteRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   description?: boolean
   blueprintUrl?: boolean
   status?: boolean
+  reviewedByAdminId?: boolean
+  reviewedAt?: boolean
+  rejectionReason?: boolean
+  adminNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
 }, ExtArgs["result"]["quoteRequest"]>
 
 export type QuoteRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -555,9 +877,14 @@ export type QuoteRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   description?: boolean
   blueprintUrl?: boolean
   status?: boolean
+  reviewedByAdminId?: boolean
+  reviewedAt?: boolean
+  rejectionReason?: boolean
+  adminNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
 }, ExtArgs["result"]["quoteRequest"]>
 
 export type QuoteRequestSelectScalar = {
@@ -572,16 +899,31 @@ export type QuoteRequestSelectScalar = {
   description?: boolean
   blueprintUrl?: boolean
   status?: boolean
+  reviewedByAdminId?: boolean
+  reviewedAt?: boolean
+  rejectionReason?: boolean
+  adminNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type QuoteRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "projectTitle" | "sector" | "budgetRange" | "location" | "description" | "blueprintUrl" | "status" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quoteRequest"]>
+export type QuoteRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "projectTitle" | "sector" | "budgetRange" | "location" | "description" | "blueprintUrl" | "status" | "reviewedByAdminId" | "reviewedAt" | "rejectionReason" | "adminNotes" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quoteRequest"]>
+export type QuoteRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+}
+export type QuoteRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+}
+export type QuoteRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+}
 
 export type $QuoteRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "QuoteRequest"
-  objects: {}
+  objects: {
+    reviewedByAdmin: Prisma.$UserPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -594,6 +936,10 @@ export type $QuoteRequestPayload<ExtArgs extends runtime.Types.Extensions.Intern
     description: string
     blueprintUrl: string | null
     status: $Enums.QuoteStatus
+    reviewedByAdminId: string | null
+    reviewedAt: Date | null
+    rejectionReason: string | null
+    adminNotes: string | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -991,6 +1337,7 @@ readonly fields: QuoteRequestFieldRefs;
  */
 export interface Prisma__QuoteRequestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  reviewedByAdmin<T extends Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1031,6 +1378,10 @@ export interface QuoteRequestFieldRefs {
   readonly description: Prisma.FieldRef<"QuoteRequest", 'String'>
   readonly blueprintUrl: Prisma.FieldRef<"QuoteRequest", 'String'>
   readonly status: Prisma.FieldRef<"QuoteRequest", 'QuoteStatus'>
+  readonly reviewedByAdminId: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly reviewedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
+  readonly rejectionReason: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly adminNotes: Prisma.FieldRef<"QuoteRequest", 'String'>
   readonly createdAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
@@ -1051,6 +1402,10 @@ export type QuoteRequestFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  /**
    * Filter, which QuoteRequest to fetch.
    */
   where: Prisma.QuoteRequestWhereUniqueInput
@@ -1069,6 +1424,10 @@ export type QuoteRequestFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  /**
    * Filter, which QuoteRequest to fetch.
    */
   where: Prisma.QuoteRequestWhereUniqueInput
@@ -1086,6 +1445,10 @@ export type QuoteRequestFindFirstArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the QuoteRequest
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
   /**
    * Filter, which QuoteRequest to fetch.
    */
@@ -1135,6 +1498,10 @@ export type QuoteRequestFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  /**
    * Filter, which QuoteRequest to fetch.
    */
   where?: Prisma.QuoteRequestWhereInput
@@ -1182,6 +1549,10 @@ export type QuoteRequestFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the QuoteRequest
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
   /**
    * Filter, which QuoteRequests to fetch.
    */
@@ -1231,6 +1602,10 @@ export type QuoteRequestCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  /**
    * The data needed to create a QuoteRequest.
    */
   data: Prisma.XOR<Prisma.QuoteRequestCreateInput, Prisma.QuoteRequestUncheckedCreateInput>
@@ -1264,6 +1639,10 @@ export type QuoteRequestCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    */
   data: Prisma.QuoteRequestCreateManyInput | Prisma.QuoteRequestCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1278,6 +1657,10 @@ export type QuoteRequestUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the QuoteRequest
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
   /**
    * The data needed to update a QuoteRequest.
    */
@@ -1330,6 +1713,10 @@ export type QuoteRequestUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * Limit how many QuoteRequests to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1344,6 +1731,10 @@ export type QuoteRequestUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the QuoteRequest
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
   /**
    * The filter to search for the QuoteRequest to update in case it exists.
    */
@@ -1371,6 +1762,10 @@ export type QuoteRequestDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  /**
    * Filter which QuoteRequest to delete.
    */
   where: Prisma.QuoteRequestWhereUniqueInput
@@ -1391,6 +1786,25 @@ export type QuoteRequestDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * QuoteRequest.reviewedByAdmin
+ */
+export type QuoteRequest$reviewedByAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
  * QuoteRequest without action
  */
 export type QuoteRequestDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1402,4 +1816,8 @@ export type QuoteRequestDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the QuoteRequest
    */
   omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
 }

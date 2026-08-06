@@ -228,6 +228,7 @@ export type UserWhereInput = {
   blogPosts?: Prisma.BlogPostListRelationFilter
   activityLogs?: Prisma.ActivityLogListRelationFilter
   uploadedAssets?: Prisma.AssetListRelationFilter
+  reviewedQuotes?: Prisma.QuoteRequestListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -247,6 +248,7 @@ export type UserOrderByWithRelationInput = {
   blogPosts?: Prisma.BlogPostOrderByRelationAggregateInput
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput
   uploadedAssets?: Prisma.AssetOrderByRelationAggregateInput
+  reviewedQuotes?: Prisma.QuoteRequestOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -269,6 +271,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   blogPosts?: Prisma.BlogPostListRelationFilter
   activityLogs?: Prisma.ActivityLogListRelationFilter
   uploadedAssets?: Prisma.AssetListRelationFilter
+  reviewedQuotes?: Prisma.QuoteRequestListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -320,6 +323,7 @@ export type UserCreateInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -339,6 +343,7 @@ export type UserUncheckedCreateInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUpdateInput = {
@@ -358,6 +363,7 @@ export type UserUpdateInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -377,6 +383,7 @@ export type UserUncheckedUpdateInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -565,6 +572,22 @@ export type UserUpdateOneWithoutUploadedAssetsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUploadedAssetsInput, Prisma.UserUpdateWithoutUploadedAssetsInput>, Prisma.UserUncheckedUpdateWithoutUploadedAssetsInput>
 }
 
+export type UserCreateNestedOneWithoutReviewedQuotesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedQuotesInput, Prisma.UserUncheckedCreateWithoutReviewedQuotesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedQuotesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReviewedQuotesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedQuotesInput, Prisma.UserUncheckedCreateWithoutReviewedQuotesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedQuotesInput
+  upsert?: Prisma.UserUpsertWithoutReviewedQuotesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedQuotesInput, Prisma.UserUpdateWithoutReviewedQuotesInput>, Prisma.UserUncheckedUpdateWithoutReviewedQuotesInput>
+}
+
 export type UserCreateNestedOneWithoutApplicationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationsInput, Prisma.UserUncheckedCreateWithoutApplicationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationsInput
@@ -627,6 +650,7 @@ export type UserCreateWithoutManagedProjectsInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -645,6 +669,7 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -668,6 +693,7 @@ export type UserCreateWithoutAssignedProjectsInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateWithoutAssignedProjectsInput = {
@@ -686,6 +712,7 @@ export type UserUncheckedCreateWithoutAssignedProjectsInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserCreateOrConnectWithoutAssignedProjectsInput = {
@@ -720,6 +747,7 @@ export type UserUpdateWithoutManagedProjectsInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -738,6 +766,7 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutAssignedProjectsInput = {
@@ -788,6 +817,7 @@ export type UserCreateWithoutUploadedAssetsInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateWithoutUploadedAssetsInput = {
@@ -806,6 +836,7 @@ export type UserUncheckedCreateWithoutUploadedAssetsInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserCreateOrConnectWithoutUploadedAssetsInput = {
@@ -840,6 +871,7 @@ export type UserUpdateWithoutUploadedAssetsInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedAssetsInput = {
@@ -858,6 +890,99 @@ export type UserUncheckedUpdateWithoutUploadedAssetsInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+}
+
+export type UserCreateWithoutReviewedQuotesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  assignedProjects?: Prisma.ProjectCreateNestedManyWithoutClientsInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+}
+
+export type UserUncheckedCreateWithoutReviewedQuotesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  assignedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientsInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+}
+
+export type UserCreateOrConnectWithoutReviewedQuotesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedQuotesInput, Prisma.UserUncheckedCreateWithoutReviewedQuotesInput>
+}
+
+export type UserUpsertWithoutReviewedQuotesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedQuotesInput, Prisma.UserUncheckedUpdateWithoutReviewedQuotesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedQuotesInput, Prisma.UserUncheckedCreateWithoutReviewedQuotesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedQuotesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedQuotesInput, Prisma.UserUncheckedUpdateWithoutReviewedQuotesInput>
+}
+
+export type UserUpdateWithoutReviewedQuotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  assignedProjects?: Prisma.ProjectUpdateManyWithoutClientsNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedQuotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  assignedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientsNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
 }
 
 export type UserCreateWithoutApplicationsInput = {
@@ -876,6 +1001,7 @@ export type UserCreateWithoutApplicationsInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -894,6 +1020,7 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -928,6 +1055,7 @@ export type UserUpdateWithoutApplicationsInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -946,6 +1074,7 @@ export type UserUncheckedUpdateWithoutApplicationsInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserCreateWithoutBlogPostsInput = {
@@ -964,6 +1093,7 @@ export type UserCreateWithoutBlogPostsInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateWithoutBlogPostsInput = {
@@ -982,6 +1112,7 @@ export type UserUncheckedCreateWithoutBlogPostsInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserCreateOrConnectWithoutBlogPostsInput = {
@@ -1016,6 +1147,7 @@ export type UserUpdateWithoutBlogPostsInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlogPostsInput = {
@@ -1034,6 +1166,7 @@ export type UserUncheckedUpdateWithoutBlogPostsInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserCreateWithoutActivityLogsInput = {
@@ -1052,6 +1185,7 @@ export type UserCreateWithoutActivityLogsInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -1070,6 +1204,7 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
 }
 
 export type UserCreateOrConnectWithoutActivityLogsInput = {
@@ -1104,6 +1239,7 @@ export type UserUpdateWithoutActivityLogsInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -1122,6 +1258,7 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUpdateWithoutAssignedProjectsInput = {
@@ -1140,6 +1277,7 @@ export type UserUpdateWithoutAssignedProjectsInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedProjectsInput = {
@@ -1158,6 +1296,7 @@ export type UserUncheckedUpdateWithoutAssignedProjectsInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutAssignedProjectsInput = {
@@ -1185,6 +1324,7 @@ export type UserCountOutputType = {
   blogPosts: number
   activityLogs: number
   uploadedAssets: number
+  reviewedQuotes: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1194,6 +1334,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   blogPosts?: boolean | UserCountOutputTypeCountBlogPostsArgs
   activityLogs?: boolean | UserCountOutputTypeCountActivityLogsArgs
   uploadedAssets?: boolean | UserCountOutputTypeCountUploadedAssetsArgs
+  reviewedQuotes?: boolean | UserCountOutputTypeCountReviewedQuotesArgs
 }
 
 /**
@@ -1248,6 +1389,13 @@ export type UserCountOutputTypeCountUploadedAssetsArgs<ExtArgs extends runtime.T
   where?: Prisma.AssetWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedQuotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuoteRequestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1266,6 +1414,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   blogPosts?: boolean | Prisma.User$blogPostsArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
   uploadedAssets?: boolean | Prisma.User$uploadedAssetsArgs<ExtArgs>
+  reviewedQuotes?: boolean | Prisma.User$reviewedQuotesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1316,6 +1465,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   blogPosts?: boolean | Prisma.User$blogPostsArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
   uploadedAssets?: boolean | Prisma.User$uploadedAssetsArgs<ExtArgs>
+  reviewedQuotes?: boolean | Prisma.User$reviewedQuotesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1330,6 +1480,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     blogPosts: Prisma.$BlogPostPayload<ExtArgs>[]
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[]
     uploadedAssets: Prisma.$AssetPayload<ExtArgs>[]
+    reviewedQuotes: Prisma.$QuoteRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1742,6 +1893,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   blogPosts<T extends Prisma.User$blogPostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blogPostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   activityLogs<T extends Prisma.User$activityLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   uploadedAssets<T extends Prisma.User$uploadedAssetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadedAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedQuotes<T extends Prisma.User$reviewedQuotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedQuotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuoteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2315,6 +2467,30 @@ export type User$uploadedAssetsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.AssetScalarFieldEnum | Prisma.AssetScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedQuotes
+ */
+export type User$reviewedQuotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuoteRequest
+   */
+  select?: Prisma.QuoteRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuoteRequest
+   */
+  omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  where?: Prisma.QuoteRequestWhereInput
+  orderBy?: Prisma.QuoteRequestOrderByWithRelationInput | Prisma.QuoteRequestOrderByWithRelationInput[]
+  cursor?: Prisma.QuoteRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuoteRequestScalarFieldEnum | Prisma.QuoteRequestScalarFieldEnum[]
 }
 
 /**
