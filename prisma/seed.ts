@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { PrismaClient, Role, ProjectSector, ProjectStatus, PhaseStatus, QuoteStatus, ApplicationStatus, InvitationStatus, AssetType } from '../src/generated/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { Pool } from 'pg'
