@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 
 export default function LandingHeader() {
+  const pathname = usePathname();
   const { user, isAuthenticated, loading, logout, getDashboardUrl } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -33,43 +35,56 @@ export default function LandingHeader() {
     return 'U';
   };
 
-  return (
-    <header className="fixed top-0 left-0 right-0 h-20 z-50 bg-[#0f131c]/80 backdrop-blur-[24px] border-b border-outline-variant/30 shadow-[0_0_15px_rgba(125,211,252,0.05)]">
-      <div className="h-full max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 cursor-pointer group">
-          <img
-            alt="AtlasBuild Logo"
-            className="h-8 w-8 object-contain transition-transform group-hover:scale-105"
-            src="/images/logo.png"
-          />
-          <span className="font-headline font-bold text-xl text-white group-hover:text-primary transition-colors">
-            AtlasBuild
-          </span>
-        </Link>
+  const navLinks = [
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+  ];
 
-        {/* Center Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8">
-          <Link href="/portfolio" className="transition-colors text-primary font-semibold text-sm font-label">
-            Portfolio
+  return (
+    <header className="fixed top-0 left-0 right-0 h-20 z-50 bg-[#0f131c]/85 backdrop-blur-[24px] border-b border-outline-variant/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+      <div className="h-full w-full max-w-[1720px] mx-auto px-6 md:px-10 lg:px-12 flex items-center justify-between relative">
+        
+        {/* LEFT SECTION: Brand Logo & Title */}
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center gap-3 cursor-pointer group">
+            <img
+              alt="AtlasBuild Logo"
+              className="h-8 w-8 object-contain transition-transform group-hover:scale-105"
+              src="/images/logo.png"
+            />
+            <span className="font-headline font-bold text-xl text-white group-hover:text-primary transition-colors tracking-tight">
+              AtlasBuild
+            </span>
           </Link>
-          <Link href="/careers" className="text-sm font-label text-on-surface-variant hover:text-white transition-colors">
-            Careers
-          </Link>
-          <Link href="/about" className="text-sm font-label text-on-surface-variant hover:text-white transition-colors">
-            About
-          </Link>
-          <Link href="/contact" className="text-sm font-label text-on-surface-variant hover:text-white transition-colors">
-            Contact
-          </Link>
+        </div>
+
+        {/* CENTER SECTION: Perfectly Centered Navigation Links */}
+        <nav className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-8 lg:gap-10">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-label transition-all hover:text-white ${
+                  isActive
+                    ? 'text-primary font-bold shadow-[0_1px_0_0_#7dd3fc]'
+                    : 'text-on-surface-variant hover:text-white font-medium'
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Far Right: Auth Actions */}
+        {/* RIGHT SECTION: Auth Actions & User Workspace Dropdown */}
         <div className="flex items-center gap-4">
           {loading ? (
-            // Skeleton pulse while checking auth
-            <div className="w-24 h-9 bg-white/5 rounded-full animate-pulse border border-white/10"></div>
+            // Skeleton pulse while checking auth state
+            <div className="w-28 h-9 bg-white/5 rounded-full animate-pulse border border-white/10"></div>
           ) : isAuthenticated && user ? (
             // Authenticated State: Dashboard Shortcut & Account Profile Dropdown
             <div className="flex items-center gap-3" ref={dropdownRef}>
@@ -93,7 +108,7 @@ export default function LandingHeader() {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-[#38bdf8] text-[#001f2e] font-bold text-xs flex items-center justify-center shadow-inner font-mono">
                     {getInitials(user.name, user.email)}
                   </div>
-                  <span className="text-xs font-semibold text-white max-w-[100px] truncate hidden md:inline">
+                  <span className="text-xs font-semibold text-white max-w-[120px] truncate hidden md:inline">
                     {user.name || user.email.split('@')[0]}
                   </span>
                   <span className="material-symbols-outlined text-[16px] text-white/60">
@@ -103,7 +118,7 @@ export default function LandingHeader() {
 
                 {/* Dropdown Menu */}
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-3 w-64 bg-[#0f1524] border border-[#7dd3fc]/30 rounded-2xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-2xl z-50 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="absolute right-0 mt-3 w-64 bg-[#0f1524] border border-[#7dd3fc]/30 rounded-2xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-2xl z-50 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-150">
                     
                     {/* User Info Header */}
                     <div className="pb-3 border-b border-white/10 flex flex-col gap-1">
