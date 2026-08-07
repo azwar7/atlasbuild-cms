@@ -1,4 +1,7 @@
 import Link from "next/link";
+import LandingHeader from "@/components/LandingHeader";
+import LandingFooter from "@/components/LandingFooter";
+import CookiePreferencesModal from "@/components/CookiePreferencesModal";
 
 export default function AboutPage() {
   return (
@@ -15,46 +18,7 @@ export default function AboutPage() {
       {/* Main Container above background */}
       <div className="relative z-10 min-h-screen flex flex-col justify-between">
         
-        {/* Header */}
-        <header className="fixed top-0 w-full z-50 bg-[#0f131c]/70 backdrop-blur-[20px] border-b border-outline-variant/30">
-          <div className="h-16 w-full px-6 lg:px-12 flex items-center justify-between relative">
-            
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-3">
-                <img 
-                  src="/images/logo.png" 
-                  alt="AtlasBuild Logo" 
-                  className="h-8 w-auto object-contain" 
-                />
-                <span className="text-xl font-headline font-bold tracking-tight text-white">AtlasBuild</span>
-              </Link>
-            </div>
-
-            {/* Nav */}
-            <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
-              <Link href="/portfolio" className="text-sm font-label text-on-surface-variant hover:text-white transition-colors">
-                Portfolio
-              </Link>
-              <Link href="/careers" className="text-sm font-label text-on-surface-variant hover:text-white transition-colors">
-                Careers
-              </Link>
-              <Link href="/about" className="text-sm font-label text-primary font-semibold transition-colors">
-                About
-              </Link>
-            </nav>
-
-            {/* Action */}
-            <div className="flex items-center gap-6">
-              <Link 
-                href="/quotes" 
-                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-primary text-sm font-label hover:bg-primary/30 transition-all backdrop-blur-md font-semibold"
-              >
-                Request Quote
-              </Link>
-            </div>
-          </div>
-        </header>
+        <LandingHeader />
 
         {/* Main Content */}
         <main className="pt-28 pb-20 px-6 lg:px-12 max-w-7xl mx-auto w-full flex-1 flex flex-col gap-12">
@@ -137,10 +101,8 @@ export default function AboutPage() {
 
         </main>
 
-        {/* Footer */}
-        <footer className="w-full bg-[#0f131c]/80 backdrop-blur-[30px] border-t border-white/10 py-8 text-center text-xs text-on-surface-variant font-mono">
-          © 2026 AtlasBuild Enterprise Civil Solutions. All Rights Reserved.
-        </footer>
+        <CookiePreferencesModal />
+        <LandingFooter />
 
       </div>
     </div>

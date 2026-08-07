@@ -1,6 +1,9 @@
 import prisma from "@/shared/lib/db";
 import Link from "next/link";
 import { ProjectSector } from "@/generated/client";
+import LandingHeader from "@/components/LandingHeader";
+import LandingFooter from "@/components/LandingFooter";
+import CookiePreferencesModal from "@/components/CookiePreferencesModal";
 
 export const revalidate = 0;
 
@@ -76,28 +79,7 @@ export default async function PublicPortfolioPage({
       {/* Main Container above background */}
       <div className="relative z-10 min-h-screen flex flex-col justify-between">
         
-        {/* Navigation Header */}
-        <header className="fixed top-0 w-full z-50 bg-[#0f131c]/70 backdrop-blur-[20px] border-b border-white/10">
-          <div className="h-16 w-full px-6 lg:px-12 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="flex items-center gap-3">
-                <img src="/images/logo.png" alt="AtlasBuild Logo" className="h-8 w-auto object-contain" />
-                <span className="text-xl font-headline font-bold text-white tracking-tight">AtlasBuild</span>
-              </Link>
-              <span className="h-4 w-px bg-white/20"></span>
-              <span className="text-xs font-mono text-primary uppercase font-bold tracking-wider">Public Registry</span>
-            </div>
-            
-            <div className="flex items-center gap-6">
-              <Link 
-                href="/quotes" 
-                className="px-4 py-2 bg-primary/20 hover:bg-primary/30 border border-primary/30 text-primary text-xs font-label uppercase tracking-wider font-bold rounded-full transition-all backdrop-blur-md"
-              >
-                RFP Estimate Proposal &rarr;
-              </Link>
-            </div>
-          </div>
-        </header>
+        <LandingHeader />
 
         {/* Main Content */}
         <main className="pt-28 pb-20 px-6 lg:px-12 max-w-7xl mx-auto w-full flex-1 flex flex-col gap-10">
@@ -217,10 +199,8 @@ export default async function PublicPortfolioPage({
           )}
         </main>
 
-        {/* Footer */}
-        <footer className="w-full bg-[#0f131c]/80 backdrop-blur-[30px] border-t border-white/10 py-8 text-center text-xs text-on-surface-variant font-mono">
-          © 2026 AtlasBuild Enterprise Civil Solutions. All Rights Reserved.
-        </footer>
+        <CookiePreferencesModal />
+        <LandingFooter />
 
       </div>
     </div>

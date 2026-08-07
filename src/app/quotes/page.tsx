@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import LandingHeader from '@/components/LandingHeader';
+import LandingFooter from '@/components/LandingFooter';
+import CookiePreferencesModal from '@/components/CookiePreferencesModal';
 
 export default function QuotesPage() {
   const [step, setStep] = useState(2); // Step 2 (Parameters) default active
@@ -84,57 +87,7 @@ export default function QuotesPage() {
       {/* Main Container above background */}
       <div className="relative z-10 min-h-screen flex flex-col justify-between">
         
-        {/* Navigation Header */}
-        <header className="fixed top-0 left-0 right-0 h-20 z-50 bg-[#0f131c]/70 backdrop-blur-[20px] border-b border-white/10">
-          <div className="h-full w-full px-6 lg:px-12 flex items-center justify-between">
-            
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-3">
-                <img 
-                  alt="AtlasBuild Logo" 
-                  className="h-8 w-auto object-contain" 
-                  src="/images/logo.png" 
-                />
-                <span className="font-headline text-xl text-white font-bold tracking-tight">
-                  AtlasBuild
-                </span>
-              </Link>
-            </div>
-
-            {/* Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-10">
-              <Link 
-                href="/portfolio" 
-                className="font-label text-sm text-on-surface-variant hover:text-white transition-colors"
-              >
-                Portfolio Registry
-              </Link>
-              <Link 
-                href="/careers" 
-                className="font-label text-sm text-on-surface-variant hover:text-white transition-colors"
-              >
-                Careers
-              </Link>
-              <Link 
-                href="/about" 
-                className="font-label text-sm text-on-surface-variant hover:text-white transition-colors"
-              >
-                About Firm
-              </Link>
-            </nav>
-
-            {/* Actions */}
-            <div className="flex items-center gap-4">
-              <Link 
-                href="/" 
-                className="px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary hover:bg-primary hover:text-black transition-all font-label text-xs font-bold uppercase tracking-wider"
-              >
-                Return to Home
-              </Link>
-            </div>
-          </div>
-        </header>
+        <LandingHeader />
 
         {/* Main RFP Form Content Center */}
         <div className="w-full">
@@ -504,10 +457,8 @@ export default function QuotesPage() {
           </main>
         </div>
 
-        {/* Footer */}
-        <footer className="w-full bg-[#0f131c]/80 backdrop-blur-[30px] border-t border-white/10 py-8 text-center text-xs text-on-surface-variant font-mono z-10">
-          © 2026 AtlasBuild Enterprise Civil Solutions. All Rights Reserved.
-        </footer>
+        <CookiePreferencesModal />
+        <LandingFooter />
 
       </div>
     </div>

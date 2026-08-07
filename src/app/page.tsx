@@ -1,6 +1,8 @@
 import Link from "next/link";
 import FeaturedServicesShowcase from "@/components/FeaturedServicesShowcase";
 import LandingHeader from "@/components/LandingHeader";
+import LandingFooter from "@/components/LandingFooter";
+import CookiePreferencesModal from "@/components/CookiePreferencesModal";
 
 export const revalidate = 0;
 
@@ -224,51 +226,8 @@ export default function LandingPage() {
           </div>
         </main>
 
-        {/* Glassmorphic Footer */}
-        <footer className="w-full bg-[#0f131c]/80 backdrop-blur-[30px] border-t border-white/10 py-16 mt-24 relative z-10">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-7 h-7 rounded bg-primary/20 border border-primary/40 flex items-center justify-center backdrop-blur-md">
-                  <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 21h18" />
-                    <path d="M5 21V7l7-4 7 4v14" />
-                    <path d="M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11H9z" />
-                  </svg>
-                </div>
-                <span className="text-lg font-headline font-bold tracking-tight text-white">AtlasBuild</span>
-              </div>
-              <p className="text-xs text-white leading-relaxed uppercase tracking-widest font-bold mb-4">Enterprise Grade Build Systems</p>
-              <p className="text-sm text-on-surface-variant">Providing systematic clarity for large-scale construction data and project lifecycle management.</p>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Exploration</h4>
-              <Link className="text-sm text-on-surface-variant hover:text-primary transition-colors" href="/portfolio">Our Vision</Link>
-              <Link className="text-sm text-on-surface-variant hover:text-primary transition-colors" href="/portfolio">Market Impact</Link>
-              <Link className="text-sm text-on-surface-variant hover:text-primary transition-colors" href="/portal/proj-1/blueprints">Documentation</Link>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
-              <Link className="text-sm text-on-surface-variant hover:text-primary transition-colors" href="/about">Leadership</Link>
-              <Link className="text-sm text-on-surface-variant hover:text-primary transition-colors" href="/about">Sustainability</Link>
-              <Link className="text-sm text-on-surface-variant hover:text-primary transition-colors" href="/careers">Press</Link>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Legal</h4>
-              <span className="text-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Privacy Policy</span>
-              <span className="text-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Terms of Service</span>
-              <span className="text-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Cookie Settings</span>
-            </div>
-          </div>
-
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-8 border-t border-white/10 text-[10px] uppercase tracking-widest text-on-surface-variant flex justify-between">
-            <span>© 2026 AtlasBuild Enterprise Systems Inc.</span>
-            <span>Built for Global Infrastructure</span>
-          </div>
-        </footer>
+        <CookiePreferencesModal />
+        <LandingFooter />
 
       </div>
     </div>

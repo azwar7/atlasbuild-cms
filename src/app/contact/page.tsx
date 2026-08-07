@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import LandingHeader from '@/components/LandingHeader';
+import LandingFooter from '@/components/LandingFooter';
+import CookiePreferencesModal from '@/components/CookiePreferencesModal';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -338,22 +340,8 @@ export default function ContactPage() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="mt-auto border-t border-[#334155]/40 bg-[#0b0f17] py-8 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <div className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="AtlasBuild Logo" className="h-6 w-auto" />
-            <span className="font-headline font-bold text-white">AtlasBuild CMS</span>
-            <span>© 2026 AtlasBuild Infrastructure Ltd. All rights reserved.</span>
-          </div>
-          <div className="flex items-center gap-6 font-mono text-[11px]">
-            <Link href="/portfolio" className="hover:text-white transition-colors">Portfolio</Link>
-            <Link href="/careers" className="hover:text-white transition-colors">Careers</Link>
-            <Link href="/about" className="hover:text-white transition-colors">About</Link>
-            <Link href="/contact" className="text-[#7dd3fc] font-bold">Contact</Link>
-          </div>
-        </div>
-      </footer>
+      <CookiePreferencesModal />
+      <LandingFooter />
 
     </div>
   );
