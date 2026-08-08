@@ -1,12 +1,20 @@
 import { QuoteRepository, CreateQuoteData } from '../repositories/QuoteRepository'
 import { QuoteStatus } from '../../../generated/client'
 import prisma from '@/shared/lib/db'
+import { RfpAiService } from './RfpAiService'
+import { AnalyzeRfpOptions } from '../types/rfpAiTypes'
 
 export class QuoteService {
   private quoteRepo: QuoteRepository
+  private aiService: RfpAiService
 
   constructor() {
     this.quoteRepo = new QuoteRepository()
+    this.aiService = new RfpAiService()
+  }
+
+  async analyzeRFP(id: string, adminUserId: string, options?: AnalyzeRfpOptions) {
+    return this.aiService.analyzeRfp(id, adminUserId, options)
   }
 
   async submitQuoteRequest(data: CreateQuoteData) {

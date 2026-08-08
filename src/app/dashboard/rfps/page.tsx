@@ -4,6 +4,8 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import DashboardHeader from '../DashboardHeader';
 import { useAuth } from '@/context/AuthContext';
+import RfpAiAnalysisDrawer from '@/components/RfpAiAnalysisDrawer';
+import { RfpAnalysisResult } from '@/features/quotes-rfp/schemas/rfpAiSchema';
 
 export interface RFPProposal {
   id: string;
@@ -23,6 +25,10 @@ export interface RFPProposal {
   rejectionReason?: string | null;
   adminNotes?: string | null;
   createdAt: string;
+  aiAnalysis?: RfpAnalysisResult | null;
+  aiAnalyzedAt?: string | null;
+  aiAnalysisVersion?: string | null;
+  aiRiskScore?: number | null;
 }
 
 const MOCK_PROPOSALS: RFPProposal[] = [
@@ -119,6 +125,85 @@ export default function RFPProposalsPage() {
   const [rejectionInputReason, setRejectionInputReason] = useState<string>('');
   const [actionLoading, setActionLoading] = useState<boolean>(false);
   const [feedbackMsg, setFeedbackMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  // AI RFP Analyzer Drawer State
+  const [aiDrawerProposal, setAiDrawerProposal] = useState<RFPProposal | null>(null);
+  const [isAnalyzingAi, setIsAnalyzingAi] = useState<boolean>(false);
+  const [aiAnalysisError, setAiAnalysisError] = useState<string | null>(null);
+
+  // AI Analysis Execution Handler
+  const handleTriggerAiAnalysis = async (proposal: RFPProposal, forceReanalyze = false) => {
+    setAiDrawerProposal(proposal);
+    setAiAnalysisError(null);
+
+    // If analysis exists in memory and forceReanalyze is false, render cached instantly
+    if (proposal.aiAnalysis && !forceReanalyze) {
+      return;
+    }
+
+    setIsAnalyzingAi(true);
+    try {
+      const res = await fetch(`/api/admin/rfps/${proposal.id}/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reanalyze: forceReanalyze }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(json.error || json.message || 'AI RFP Analysis request failed.');
+      }
+
+      const { analysis, analyzedAt, version } = json.data;
+
+      // Update proposal state in proposals list
+      setProposals((prev) =>
+        prev.map((p) =>
+          p.id === proposal.id
+            ? {
+                ...p,
+                aiAnalysis: analysis,
+                aiAnalyzedAt: analyzedAt,
+                aiAnalysisVersion: version,
+                aiRiskScore: analysis.leadScore,
+              }
+            : p
+        )
+      );
+
+      // Update current drawer proposal state
+      setAiDrawerProposal((prev) =>
+        prev?.id === proposal.id
+          ? {
+              ...prev,
+              aiAnalysis: analysis,
+              aiAnalyzedAt: analyzedAt,
+              aiAnalysisVersion: version,
+              aiRiskScore: analysis.leadScore,
+            }
+          : prev
+      );
+
+      // Update selected proposal if active in modal
+      if (selectedProposal?.id === proposal.id) {
+        setSelectedProposal((prev) =>
+          prev
+            ? {
+                ...prev,
+                aiAnalysis: analysis,
+                aiAnalyzedAt: analyzedAt,
+                aiAnalysisVersion: version,
+                aiRiskScore: analysis.leadScore,
+              }
+            : null
+        );
+      }
+    } catch (err: any) {
+      setAiAnalysisError(err.message || 'AI RFP Analysis operation failed.');
+    } finally {
+      setIsAnalyzingAi(false);
+    }
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -636,6 +721,20 @@ export default function RFPProposalsPage() {
                           {/* Quick Action Buttons */}
                           <td className="py-4 px-4 text-right" onClick={(e) => e.stopPropagation()}>
                             <div className="flex items-center justify-end gap-1.5">
+                              {/* AI Analyze Button */}
+                              <button
+                                onClick={() => handleTriggerAiAnalysis(proposal)}
+                                className="px-2.5 py-1 bg-[#7dd3fc]/15 border border-[#7dd3fc]/40 text-[#7dd3fc] hover:bg-[#7dd3fc] hover:text-[#001f2e] rounded-lg transition-all flex items-center gap-1 font-bold text-xs shadow-[0_0_8px_rgba(125,211,252,0.15)]"
+                                title="Analyze RFP with AI Lead Scoring"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">psychology</span>
+                                {proposal.aiAnalysis ? (
+                                  <span className="font-mono text-[10px] font-extrabold">{proposal.aiRiskScore}/100</span>
+                                ) : (
+                                  <span className="text-[10px]">AI Audit</span>
+                                )}
+                              </button>
+
                               {/* View Details */}
                               <button
                                 onClick={() => setSelectedProposal(proposal)}
@@ -780,14 +879,24 @@ export default function RFPProposalsPage() {
             )}
 
             {/* Modal Action Buttons Footer */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
-              <button
-                onClick={() => handleExecuteAction(selectedProposal.id, 'REVIEW')}
-                disabled={actionLoading}
-                className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/15 rounded-xl text-xs font-semibold text-white"
-              >
-                Mark Under Review
-              </button>
+            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleExecuteAction(selectedProposal.id, 'REVIEW')}
+                  disabled={actionLoading}
+                  className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/15 rounded-xl text-xs font-semibold text-white"
+                >
+                  Mark Under Review
+                </button>
+
+                <button
+                  onClick={() => handleTriggerAiAnalysis(selectedProposal)}
+                  className="px-4 py-2 bg-[#7dd3fc]/20 border border-[#7dd3fc]/40 text-[#7dd3fc] hover:bg-[#7dd3fc] hover:text-[#001f2e] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(125,211,252,0.2)] cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[16px]">psychology</span>
+                  {selectedProposal.aiAnalysis ? 'View AI Analysis' : 'Analyze with AI'}
+                </button>
+              </div>
 
               <div className="flex items-center gap-2">
                 {/* Reject Button */}
@@ -868,6 +977,23 @@ export default function RFPProposalsPage() {
 
           </div>
         </div>
+      )}
+
+      {/* AI RFP Analysis Findings Drawer */}
+      {aiDrawerProposal && (
+        <RfpAiAnalysisDrawer
+          proposalId={aiDrawerProposal.id}
+          projectTitle={aiDrawerProposal.projectTitle}
+          clientName={aiDrawerProposal.name}
+          clientCompany={aiDrawerProposal.company}
+          analysis={aiDrawerProposal.aiAnalysis || null}
+          analyzedAt={aiDrawerProposal.aiAnalyzedAt}
+          version={aiDrawerProposal.aiAnalysisVersion}
+          isAnalyzing={isAnalyzingAi}
+          analysisError={aiAnalysisError}
+          onClose={() => setAiDrawerProposal(null)}
+          onReanalyze={() => handleTriggerAiAnalysis(aiDrawerProposal, true)}
+        />
       )}
 
     </div>

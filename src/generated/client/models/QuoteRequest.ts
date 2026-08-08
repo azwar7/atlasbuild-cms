@@ -20,8 +20,18 @@ export type QuoteRequestModel = runtime.Types.Result.DefaultSelection<Prisma.$Qu
 
 export type AggregateQuoteRequest = {
   _count: QuoteRequestCountAggregateOutputType | null
+  _avg: QuoteRequestAvgAggregateOutputType | null
+  _sum: QuoteRequestSumAggregateOutputType | null
   _min: QuoteRequestMinAggregateOutputType | null
   _max: QuoteRequestMaxAggregateOutputType | null
+}
+
+export type QuoteRequestAvgAggregateOutputType = {
+  aiRiskScore: number | null
+}
+
+export type QuoteRequestSumAggregateOutputType = {
+  aiRiskScore: number | null
 }
 
 export type QuoteRequestMinAggregateOutputType = {
@@ -40,6 +50,9 @@ export type QuoteRequestMinAggregateOutputType = {
   reviewedAt: Date | null
   rejectionReason: string | null
   adminNotes: string | null
+  aiAnalyzedAt: Date | null
+  aiAnalysisVersion: string | null
+  aiRiskScore: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -61,6 +74,9 @@ export type QuoteRequestMaxAggregateOutputType = {
   reviewedAt: Date | null
   rejectionReason: string | null
   adminNotes: string | null
+  aiAnalyzedAt: Date | null
+  aiAnalysisVersion: string | null
+  aiRiskScore: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -82,12 +98,24 @@ export type QuoteRequestCountAggregateOutputType = {
   reviewedAt: number
   rejectionReason: number
   adminNotes: number
+  aiAnalysis: number
+  aiAnalyzedAt: number
+  aiAnalysisVersion: number
+  aiRiskScore: number
   createdAt: number
   updatedAt: number
   deletedAt: number
   _all: number
 }
 
+
+export type QuoteRequestAvgAggregateInputType = {
+  aiRiskScore?: true
+}
+
+export type QuoteRequestSumAggregateInputType = {
+  aiRiskScore?: true
+}
 
 export type QuoteRequestMinAggregateInputType = {
   id?: true
@@ -105,6 +133,9 @@ export type QuoteRequestMinAggregateInputType = {
   reviewedAt?: true
   rejectionReason?: true
   adminNotes?: true
+  aiAnalyzedAt?: true
+  aiAnalysisVersion?: true
+  aiRiskScore?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -126,6 +157,9 @@ export type QuoteRequestMaxAggregateInputType = {
   reviewedAt?: true
   rejectionReason?: true
   adminNotes?: true
+  aiAnalyzedAt?: true
+  aiAnalysisVersion?: true
+  aiRiskScore?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -147,6 +181,10 @@ export type QuoteRequestCountAggregateInputType = {
   reviewedAt?: true
   rejectionReason?: true
   adminNotes?: true
+  aiAnalysis?: true
+  aiAnalyzedAt?: true
+  aiAnalysisVersion?: true
+  aiRiskScore?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -191,6 +229,18 @@ export type QuoteRequestAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: QuoteRequestAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: QuoteRequestSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: QuoteRequestMinAggregateInputType
@@ -221,6 +271,8 @@ export type QuoteRequestGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: QuoteRequestCountAggregateInputType | true
+  _avg?: QuoteRequestAvgAggregateInputType
+  _sum?: QuoteRequestSumAggregateInputType
   _min?: QuoteRequestMinAggregateInputType
   _max?: QuoteRequestMaxAggregateInputType
 }
@@ -241,10 +293,16 @@ export type QuoteRequestGroupByOutputType = {
   reviewedAt: Date | null
   rejectionReason: string | null
   adminNotes: string | null
+  aiAnalysis: runtime.JsonValue | null
+  aiAnalyzedAt: Date | null
+  aiAnalysisVersion: string | null
+  aiRiskScore: number | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   _count: QuoteRequestCountAggregateOutputType | null
+  _avg: QuoteRequestAvgAggregateOutputType | null
+  _sum: QuoteRequestSumAggregateOutputType | null
   _min: QuoteRequestMinAggregateOutputType | null
   _max: QuoteRequestMaxAggregateOutputType | null
 }
@@ -283,6 +341,10 @@ export type QuoteRequestWhereInput = {
   reviewedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   rejectionReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   adminNotes?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiAnalysis?: Prisma.JsonNullableFilter<"QuoteRequest">
+  aiAnalyzedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  aiAnalysisVersion?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiRiskScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
@@ -305,6 +367,10 @@ export type QuoteRequestOrderByWithRelationInput = {
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
   adminNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiAnalysis?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiAnalyzedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiAnalysisVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiRiskScore?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -330,6 +396,10 @@ export type QuoteRequestWhereUniqueInput = Prisma.AtLeast<{
   reviewedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   rejectionReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   adminNotes?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiAnalysis?: Prisma.JsonNullableFilter<"QuoteRequest">
+  aiAnalyzedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  aiAnalysisVersion?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiRiskScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
@@ -352,12 +422,18 @@ export type QuoteRequestOrderByWithAggregationInput = {
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
   adminNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiAnalysis?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiAnalyzedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiAnalysisVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiRiskScore?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.QuoteRequestCountOrderByAggregateInput
+  _avg?: Prisma.QuoteRequestAvgOrderByAggregateInput
   _max?: Prisma.QuoteRequestMaxOrderByAggregateInput
   _min?: Prisma.QuoteRequestMinOrderByAggregateInput
+  _sum?: Prisma.QuoteRequestSumOrderByAggregateInput
 }
 
 export type QuoteRequestScalarWhereWithAggregatesInput = {
@@ -379,6 +455,10 @@ export type QuoteRequestScalarWhereWithAggregatesInput = {
   reviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
   rejectionReason?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
   adminNotes?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  aiAnalysis?: Prisma.JsonNullableWithAggregatesFilter<"QuoteRequest">
+  aiAnalyzedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
+  aiAnalysisVersion?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  aiRiskScore?: Prisma.IntNullableWithAggregatesFilter<"QuoteRequest"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
@@ -399,6 +479,10 @@ export type QuoteRequestCreateInput = {
   reviewedAt?: Date | string | null
   rejectionReason?: string | null
   adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -421,6 +505,10 @@ export type QuoteRequestUncheckedCreateInput = {
   reviewedAt?: Date | string | null
   rejectionReason?: string | null
   adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -441,6 +529,10 @@ export type QuoteRequestUpdateInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -463,6 +555,10 @@ export type QuoteRequestUncheckedUpdateInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -484,6 +580,10 @@ export type QuoteRequestCreateManyInput = {
   reviewedAt?: Date | string | null
   rejectionReason?: string | null
   adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -504,6 +604,10 @@ export type QuoteRequestUpdateManyMutationInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -525,6 +629,10 @@ export type QuoteRequestUncheckedUpdateManyInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -556,9 +664,17 @@ export type QuoteRequestCountOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
   adminNotes?: Prisma.SortOrder
+  aiAnalysis?: Prisma.SortOrder
+  aiAnalyzedAt?: Prisma.SortOrder
+  aiAnalysisVersion?: Prisma.SortOrder
+  aiRiskScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type QuoteRequestAvgOrderByAggregateInput = {
+  aiRiskScore?: Prisma.SortOrder
 }
 
 export type QuoteRequestMaxOrderByAggregateInput = {
@@ -577,6 +693,9 @@ export type QuoteRequestMaxOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
   adminNotes?: Prisma.SortOrder
+  aiAnalyzedAt?: Prisma.SortOrder
+  aiAnalysisVersion?: Prisma.SortOrder
+  aiRiskScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -598,9 +717,16 @@ export type QuoteRequestMinOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
   adminNotes?: Prisma.SortOrder
+  aiAnalyzedAt?: Prisma.SortOrder
+  aiAnalysisVersion?: Prisma.SortOrder
+  aiRiskScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type QuoteRequestSumOrderByAggregateInput = {
+  aiRiskScore?: Prisma.SortOrder
 }
 
 export type QuoteRequestCreateNestedManyWithoutReviewedByAdminInput = {
@@ -649,6 +775,14 @@ export type EnumQuoteStatusFieldUpdateOperationsInput = {
   set?: $Enums.QuoteStatus
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type QuoteRequestCreateWithoutReviewedByAdminInput = {
   id?: string
   name: string
@@ -664,6 +798,10 @@ export type QuoteRequestCreateWithoutReviewedByAdminInput = {
   reviewedAt?: Date | string | null
   rejectionReason?: string | null
   adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -684,6 +822,10 @@ export type QuoteRequestUncheckedCreateWithoutReviewedByAdminInput = {
   reviewedAt?: Date | string | null
   rejectionReason?: string | null
   adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -734,6 +876,10 @@ export type QuoteRequestScalarWhereInput = {
   reviewedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   rejectionReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   adminNotes?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiAnalysis?: Prisma.JsonNullableFilter<"QuoteRequest">
+  aiAnalyzedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  aiAnalysisVersion?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiRiskScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
@@ -754,6 +900,10 @@ export type QuoteRequestCreateManyReviewedByAdminInput = {
   reviewedAt?: Date | string | null
   rejectionReason?: string | null
   adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -774,6 +924,10 @@ export type QuoteRequestUpdateWithoutReviewedByAdminInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -794,6 +948,10 @@ export type QuoteRequestUncheckedUpdateWithoutReviewedByAdminInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -814,6 +972,10 @@ export type QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -837,6 +999,10 @@ export type QuoteRequestSelect<ExtArgs extends runtime.Types.Extensions.Internal
   reviewedAt?: boolean
   rejectionReason?: boolean
   adminNotes?: boolean
+  aiAnalysis?: boolean
+  aiAnalyzedAt?: boolean
+  aiAnalysisVersion?: boolean
+  aiRiskScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -859,6 +1025,10 @@ export type QuoteRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   reviewedAt?: boolean
   rejectionReason?: boolean
   adminNotes?: boolean
+  aiAnalysis?: boolean
+  aiAnalyzedAt?: boolean
+  aiAnalysisVersion?: boolean
+  aiRiskScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -881,6 +1051,10 @@ export type QuoteRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   reviewedAt?: boolean
   rejectionReason?: boolean
   adminNotes?: boolean
+  aiAnalysis?: boolean
+  aiAnalyzedAt?: boolean
+  aiAnalysisVersion?: boolean
+  aiRiskScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -903,12 +1077,16 @@ export type QuoteRequestSelectScalar = {
   reviewedAt?: boolean
   rejectionReason?: boolean
   adminNotes?: boolean
+  aiAnalysis?: boolean
+  aiAnalyzedAt?: boolean
+  aiAnalysisVersion?: boolean
+  aiRiskScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type QuoteRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "projectTitle" | "sector" | "budgetRange" | "location" | "description" | "blueprintUrl" | "status" | "reviewedByAdminId" | "reviewedAt" | "rejectionReason" | "adminNotes" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quoteRequest"]>
+export type QuoteRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "projectTitle" | "sector" | "budgetRange" | "location" | "description" | "blueprintUrl" | "status" | "reviewedByAdminId" | "reviewedAt" | "rejectionReason" | "adminNotes" | "aiAnalysis" | "aiAnalyzedAt" | "aiAnalysisVersion" | "aiRiskScore" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quoteRequest"]>
 export type QuoteRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
 }
@@ -940,6 +1118,10 @@ export type $QuoteRequestPayload<ExtArgs extends runtime.Types.Extensions.Intern
     reviewedAt: Date | null
     rejectionReason: string | null
     adminNotes: string | null
+    aiAnalysis: runtime.JsonValue | null
+    aiAnalyzedAt: Date | null
+    aiAnalysisVersion: string | null
+    aiRiskScore: number | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1382,6 +1564,10 @@ export interface QuoteRequestFieldRefs {
   readonly reviewedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly rejectionReason: Prisma.FieldRef<"QuoteRequest", 'String'>
   readonly adminNotes: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly aiAnalysis: Prisma.FieldRef<"QuoteRequest", 'Json'>
+  readonly aiAnalyzedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
+  readonly aiAnalysisVersion: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly aiRiskScore: Prisma.FieldRef<"QuoteRequest", 'Int'>
   readonly createdAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
