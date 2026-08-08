@@ -11,6 +11,7 @@ export interface RfpAiAnalysisDrawerProps {
   analysis: RfpAnalysisResult | null;
   analyzedAt?: string | null;
   version?: string | null;
+  providerUsed?: string | null;
   isAnalyzing: boolean;
   analysisError: string | null;
   onClose: () => void;
@@ -25,6 +26,7 @@ export default function RfpAiAnalysisDrawer({
   analysis,
   analyzedAt,
   version,
+  providerUsed,
   isAnalyzing,
   analysisError,
   onClose,
@@ -44,7 +46,7 @@ export default function RfpAiAnalysisDrawer({
       case 'LOW':
         return 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300';
       case 'MEDIUM':
-        return 'bg-sky-500/15 border-sky-500/40 text-sky-300';
+        return 'bg-sky-500/15 border-sky-500/40 text-[#7dd3fc]';
       case 'HIGH':
         return 'bg-amber-500/15 border-amber-500/40 text-amber-300';
       case 'CRITICAL':
@@ -84,6 +86,14 @@ export default function RfpAiAnalysisDrawer({
               <span>AI RFP TECHNICAL AUDIT</span>
               <span>•</span>
               <span>RFP #{proposalId}</span>
+              {providerUsed && (
+                <>
+                  <span>•</span>
+                  <span className="px-2 py-0.5 rounded bg-[#7dd3fc]/15 border border-[#7dd3fc]/30 text-[10px] font-bold text-[#7dd3fc]">
+                    {providerUsed}
+                  </span>
+                </>
+              )}
             </div>
             <h2 className="text-xl font-headline font-bold text-white tracking-tight">
               {projectTitle}
@@ -291,7 +301,7 @@ export default function RfpAiAnalysisDrawer({
               {/* Footer Timestamp & Version Info */}
               {analyzedAt && (
                 <div className="pt-2 text-right text-[10px] font-mono text-white/40 flex items-center justify-between">
-                  <span>AI Engine Model v{version || '1.0.0'}</span>
+                  <span>Engine: {providerUsed || 'UNKNOWN'} • v{version || '1.0.0'}</span>
                   <span>Analyzed: {new Date(analyzedAt).toLocaleString()}</span>
                 </div>
               )}

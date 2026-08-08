@@ -9,4 +9,5 @@ export interface RfpAiAnalysisResponse {
   analyzedAt: string
   version: string
   cached: boolean
+  providerUsed?: string
 }

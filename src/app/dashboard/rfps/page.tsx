@@ -130,6 +130,7 @@ export default function RFPProposalsPage() {
   const [aiDrawerProposal, setAiDrawerProposal] = useState<RFPProposal | null>(null);
   const [isAnalyzingAi, setIsAnalyzingAi] = useState<boolean>(false);
   const [aiAnalysisError, setAiAnalysisError] = useState<string | null>(null);
+  const [aiProviderUsed, setAiProviderUsed] = useState<string | null>(null);
 
   // AI Analysis Execution Handler
   const handleTriggerAiAnalysis = async (proposal: RFPProposal, forceReanalyze = false) => {
@@ -157,7 +158,10 @@ export default function RFPProposalsPage() {
         throw new Error(errorMsg);
       }
 
-      const { analysis, analyzedAt, version } = json.data;
+      const { analysis, analyzedAt, version, providerUsed } = json.data;
+      if (providerUsed) {
+        setAiProviderUsed(providerUsed);
+      }
 
       // Update proposal state in proposals list
       setProposals((prev) =>
@@ -992,6 +996,7 @@ export default function RFPProposalsPage() {
           analysis={aiDrawerProposal.aiAnalysis || null}
           analyzedAt={aiDrawerProposal.aiAnalyzedAt}
           version={aiDrawerProposal.aiAnalysisVersion}
+          providerUsed={aiProviderUsed}
           isAnalyzing={isAnalyzingAi}
           analysisError={aiAnalysisError}
           onClose={() => setAiDrawerProposal(null)}

@@ -39,12 +39,13 @@ export class RfpAiService {
         description: 'Pre-construction engineering evaluation for 45-acre logistics terminal featuring heavy paving, foundation piling, and stormwater management systems.',
         blueprintUrl: null,
       }
-      const analysis = await this.callAiProvider(syntheticRfp)
+      const { analysis, providerUsed } = await this.callAiProvider(syntheticRfp)
       return {
         analysis,
         analyzedAt: new Date().toISOString(),
         version: RfpAiService.ANALYSIS_VERSION,
         cached: false,
+        providerUsed,
       }
     }
 
@@ -56,11 +57,12 @@ export class RfpAiService {
         analyzedAt: rfp.aiAnalyzedAt ? rfp.aiAnalyzedAt.toISOString() : new Date().toISOString(),
         version: rfp.aiAnalysisVersion || RfpAiService.ANALYSIS_VERSION,
         cached: true,
+        providerUsed: 'CACHED',
       }
     }
 
     // 3. Generate AI Analysis using configured AI provider
-    const analysis = await this.callAiProvider(rfp)
+    const { analysis, providerUsed } = await this.callAiProvider(rfp)
 
     // 4. Update Database Record
     const now = new Date()
@@ -86,6 +88,7 @@ export class RfpAiService {
           riskLevel: analysis.riskLevel,
           recommendedNextAction: analysis.recommendedNextAction,
           version: RfpAiService.ANALYSIS_VERSION,
+          providerUsed,
         }),
       },
     })
@@ -95,6 +98,7 @@ export class RfpAiService {
       analyzedAt: now.toISOString(),
       version: RfpAiService.ANALYSIS_VERSION,
       cached: false,
+      providerUsed,
     }
   }
 
@@ -112,7 +116,7 @@ export class RfpAiService {
     email: string
     description: string
     blueprintUrl?: string | null
-  }): Promise<RfpAnalysisResult> {
+  }): Promise<{ analysis: RfpAnalysisResult; providerUsed: string }> {
     const systemPrompt = `You are AtlasBuild's internal RFP analysis assistant for heavy civil and commercial engineering projects.
 
 Your objective is to perform a rigorous, structured technical and commercial evaluation of inbound client RFP submissions.
@@ -154,14 +158,21 @@ Return JSON matching this exact structure:
 
     try {
       const provider = getAIProvider()
-      return await provider.generateStructuredOutput<RfpAnalysisResult>({
+      const analysis = await provider.generateStructuredOutput<RfpAnalysisResult>({
         systemPrompt,
         userPrompt,
         schema: rfpAnalysisSchema,
       })
+      return {
+        analysis,
+        providerUsed: provider.name.toUpperCase(),
+      }
     } catch (err: any) {
       console.warn(`⚠️ AI Provider execution failed (${err.message || err}). Executing deterministic fallback AI analysis.`)
-      return this.generateFallbackAnalysis(rfp)
+      return {
+        analysis: this.generateFallbackAnalysis(rfp),
+        providerUsed: 'FALLBACK_ENGINE',
+      }
     }
   }
 
