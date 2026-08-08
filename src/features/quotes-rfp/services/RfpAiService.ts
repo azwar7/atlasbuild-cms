@@ -1,12 +1,13 @@
 import prisma from '@/shared/lib/db'
 import { rfpAnalysisSchema, RfpAnalysisResult } from '../schemas/rfpAiSchema'
 import { RfpAiAnalysisResponse, AnalyzeRfpOptions } from '../types/rfpAiTypes'
+import { getAIProvider } from '@/lib/ai'
 
 export class RfpAiService {
   private static ANALYSIS_VERSION = '1.0.0'
 
   /**
-   * Analyze an RFP proposal using OpenAI (or fallback rules engine if API key unconfigured).
+   * Analyze an RFP proposal using active AI provider (OpenAI, Gemini, or Hugging Face).
    */
   async analyzeRfp(
     rfpId: string,
@@ -33,7 +34,7 @@ export class RfpAiService {
       }
     }
 
-    // 3. Generate AI Analysis
+    // 3. Generate AI Analysis using configured AI provider
     const analysis = await this.callAiProvider(rfp)
 
     // 4. Update Database Record
@@ -73,7 +74,7 @@ export class RfpAiService {
   }
 
   /**
-   * Calls OpenAI API or deterministic fallback analysis if API key is not configured.
+   * Calls configured AI provider (OpenAI, Gemini, or Hugging Face) or fallback analysis if keys are missing.
    */
   private async callAiProvider(rfp: {
     id: string
@@ -87,14 +88,6 @@ export class RfpAiService {
     description: string
     blueprintUrl?: string | null
   }): Promise<RfpAnalysisResult> {
-    const apiKey = process.env.OPENAI_API_KEY
-
-    // Fallback if OPENAI_API_KEY is omitted or empty
-    if (!apiKey || apiKey.trim() === '' || apiKey.includes('YOUR_API_KEY')) {
-      console.warn('⚠️ OPENAI_API_KEY is not set. Executing deterministic fallback AI analysis.')
-      return this.generateFallbackAnalysis(rfp)
-    }
-
     const systemPrompt = `You are AtlasBuild's internal RFP analysis assistant for heavy civil and commercial engineering projects.
 
 Your objective is to perform a rigorous, structured technical and commercial evaluation of inbound client RFP submissions.
@@ -135,41 +128,14 @@ Return JSON matching this exact structure:
 }`
 
     try {
-      const modelName = process.env.OPENAI_MODEL || 'gpt-4o'
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: modelName,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userPrompt },
-          ],
-          response_format: { type: 'json_object' },
-          temperature: 0.2,
-        }),
+      const provider = getAIProvider()
+      return await provider.generateStructuredOutput<RfpAnalysisResult>({
+        systemPrompt,
+        userPrompt,
+        schema: rfpAnalysisSchema,
       })
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        console.error('OpenAI API HTTP Error:', response.status, errorText)
-        throw new Error(`OpenAI API returned status ${response.status}`)
-      }
-
-      const json = await response.json()
-      const rawOutput = json.choices?.[0]?.message?.content
-      if (!rawOutput) {
-        throw new Error('Empty response from OpenAI API.')
-      }
-
-      const parsedJson = JSON.parse(rawOutput)
-      return rfpAnalysisSchema.parse(parsedJson)
     } catch (err: any) {
-      console.error('Failed OpenAI AI Analysis execution:', err.message || err)
-      // Graceful fallback if OpenAI call fails
+      console.warn(`⚠️ AI Provider execution failed (${err.message || err}). Executing deterministic fallback AI analysis.`)
       return this.generateFallbackAnalysis(rfp)
     }
   }
