@@ -151,7 +151,10 @@ export default function RFPProposalsPage() {
 
       const json = await res.json();
       if (!res.ok) {
-        throw new Error(json.error || json.message || 'AI RFP Analysis request failed.');
+        const errorMsg = typeof json.error === 'object' && json.error?.message
+          ? json.error.message
+          : (typeof json.error === 'string' ? json.error : (json.message || 'AI RFP Analysis request failed.'));
+        throw new Error(errorMsg);
       }
 
       const { analysis, analyzedAt, version } = json.data;
