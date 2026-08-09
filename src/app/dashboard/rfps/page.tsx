@@ -493,9 +493,6 @@ export default function RFPProposalsPage() {
               </div>
               <h1 className="text-2xl lg:text-3xl font-headline font-bold text-white tracking-tight flex items-center gap-3">
                 RFP Lead Prioritization & Inbox
-                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300">
-                  Phase 1B AI Prioritization
-                </span>
               </h1>
               <p className="text-xs text-white/60 mt-1 max-w-2xl">
                 Identify high-value leads and urgent risk profiles. AI priority recommendations remain advisory; estimators retain final decision-making.
