@@ -90,6 +90,7 @@ model User {
   activityLogs    ActivityLog[]
   uploadedAssets  Asset[]
   reviewedQuotes  QuoteRequest[] @relation("AdminReviewedQuotes")
+  priorityOverrides QuoteRequest[] @relation("AdminPriorityOverrides")
 }
 
 model Project {
@@ -202,15 +203,29 @@ model QuoteRequest {
   rejectionReason   String?       @db.Text
   adminNotes        String?       @db.Text
 
-  // AI Lead Risk Scoring & Analysis
-  aiAnalysis        Json?
-  aiAnalyzedAt      DateTime?
-  aiAnalysisVersion String?
-  aiRiskScore       Int?
+  // AI Lead Risk Scoring & Analysis (Phase 1A & Phase 1B)
+  aiAnalysis           Json?
+  aiAnalyzedAt         DateTime?
+  aiAnalysisVersion    String?
+  aiRiskScore          Int?
+  aiOpportunityScore   Int?
+  aiPriorityScore      Int?
+  aiPriorityLevel      String?      // CRITICAL, HIGH, MEDIUM, LOW
+  aiRecommendedAction  String?      // CONTACT_IMMEDIATELY, PRIORITIZE_REVIEW, REQUEST_INFORMATION, STANDARD_REVIEW, DEFER
+  aiPriorityReason     String?      @db.Text
+
+  // Human Admin Priority Override
+  aiHumanPriority      String?      // CRITICAL, HIGH, MEDIUM, LOW
+  aiHumanOverrideAt    DateTime?
+  aiHumanOverrideById  String?
+  aiHumanOverrideBy    User?        @relation("AdminPriorityOverrides", fields: [aiHumanOverrideById], references: [id], onDelete: SetNull)
 
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
   deletedAt         DateTime?
+
+  @@index([aiPriorityScore])
+  @@index([aiPriorityLevel])
 }
 
 model CareerOpportunity {

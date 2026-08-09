@@ -229,6 +229,7 @@ export type UserWhereInput = {
   activityLogs?: Prisma.ActivityLogListRelationFilter
   uploadedAssets?: Prisma.AssetListRelationFilter
   reviewedQuotes?: Prisma.QuoteRequestListRelationFilter
+  priorityOverrides?: Prisma.QuoteRequestListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -249,6 +250,7 @@ export type UserOrderByWithRelationInput = {
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput
   uploadedAssets?: Prisma.AssetOrderByRelationAggregateInput
   reviewedQuotes?: Prisma.QuoteRequestOrderByRelationAggregateInput
+  priorityOverrides?: Prisma.QuoteRequestOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -272,6 +274,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   activityLogs?: Prisma.ActivityLogListRelationFilter
   uploadedAssets?: Prisma.AssetListRelationFilter
   reviewedQuotes?: Prisma.QuoteRequestListRelationFilter
+  priorityOverrides?: Prisma.QuoteRequestListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -324,6 +327,7 @@ export type UserCreateInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -344,6 +348,7 @@ export type UserUncheckedCreateInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUpdateInput = {
@@ -364,6 +369,7 @@ export type UserUpdateInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -384,6 +390,7 @@ export type UserUncheckedUpdateInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -578,6 +585,12 @@ export type UserCreateNestedOneWithoutReviewedQuotesInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
+export type UserCreateNestedOneWithoutPriorityOverridesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPriorityOverridesInput, Prisma.UserUncheckedCreateWithoutPriorityOverridesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPriorityOverridesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserUpdateOneWithoutReviewedQuotesNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedQuotesInput, Prisma.UserUncheckedCreateWithoutReviewedQuotesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedQuotesInput
@@ -586,6 +599,16 @@ export type UserUpdateOneWithoutReviewedQuotesNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedQuotesInput, Prisma.UserUpdateWithoutReviewedQuotesInput>, Prisma.UserUncheckedUpdateWithoutReviewedQuotesInput>
+}
+
+export type UserUpdateOneWithoutPriorityOverridesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPriorityOverridesInput, Prisma.UserUncheckedCreateWithoutPriorityOverridesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPriorityOverridesInput
+  upsert?: Prisma.UserUpsertWithoutPriorityOverridesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPriorityOverridesInput, Prisma.UserUpdateWithoutPriorityOverridesInput>, Prisma.UserUncheckedUpdateWithoutPriorityOverridesInput>
 }
 
 export type UserCreateNestedOneWithoutApplicationsInput = {
@@ -651,6 +674,7 @@ export type UserCreateWithoutManagedProjectsInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -670,6 +694,7 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -694,6 +719,7 @@ export type UserCreateWithoutAssignedProjectsInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedProjectsInput = {
@@ -713,6 +739,7 @@ export type UserUncheckedCreateWithoutAssignedProjectsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedProjectsInput = {
@@ -748,6 +775,7 @@ export type UserUpdateWithoutManagedProjectsInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -767,6 +795,7 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutAssignedProjectsInput = {
@@ -818,6 +847,7 @@ export type UserCreateWithoutUploadedAssetsInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedAssetsInput = {
@@ -837,6 +867,7 @@ export type UserUncheckedCreateWithoutUploadedAssetsInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedAssetsInput = {
@@ -872,6 +903,7 @@ export type UserUpdateWithoutUploadedAssetsInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedAssetsInput = {
@@ -891,6 +923,7 @@ export type UserUncheckedUpdateWithoutUploadedAssetsInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserCreateWithoutReviewedQuotesInput = {
@@ -910,6 +943,7 @@ export type UserCreateWithoutReviewedQuotesInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedQuotesInput = {
@@ -929,11 +963,57 @@ export type UserUncheckedCreateWithoutReviewedQuotesInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedQuotesInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutReviewedQuotesInput, Prisma.UserUncheckedCreateWithoutReviewedQuotesInput>
+}
+
+export type UserCreateWithoutPriorityOverridesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  assignedProjects?: Prisma.ProjectCreateNestedManyWithoutClientsInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+}
+
+export type UserUncheckedCreateWithoutPriorityOverridesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  assignedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientsInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+}
+
+export type UserCreateOrConnectWithoutPriorityOverridesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPriorityOverridesInput, Prisma.UserUncheckedCreateWithoutPriorityOverridesInput>
 }
 
 export type UserUpsertWithoutReviewedQuotesInput = {
@@ -964,6 +1044,7 @@ export type UserUpdateWithoutReviewedQuotesInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedQuotesInput = {
@@ -983,6 +1064,58 @@ export type UserUncheckedUpdateWithoutReviewedQuotesInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
+}
+
+export type UserUpsertWithoutPriorityOverridesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPriorityOverridesInput, Prisma.UserUncheckedUpdateWithoutPriorityOverridesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPriorityOverridesInput, Prisma.UserUncheckedCreateWithoutPriorityOverridesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPriorityOverridesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPriorityOverridesInput, Prisma.UserUncheckedUpdateWithoutPriorityOverridesInput>
+}
+
+export type UserUpdateWithoutPriorityOverridesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  assignedProjects?: Prisma.ProjectUpdateManyWithoutClientsNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPriorityOverridesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  assignedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientsNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
+  reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
 }
 
 export type UserCreateWithoutApplicationsInput = {
@@ -1002,6 +1135,7 @@ export type UserCreateWithoutApplicationsInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -1021,6 +1155,7 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -1056,6 +1191,7 @@ export type UserUpdateWithoutApplicationsInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -1075,6 +1211,7 @@ export type UserUncheckedUpdateWithoutApplicationsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserCreateWithoutBlogPostsInput = {
@@ -1094,6 +1231,7 @@ export type UserCreateWithoutBlogPostsInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutBlogPostsInput = {
@@ -1113,6 +1251,7 @@ export type UserUncheckedCreateWithoutBlogPostsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutBlogPostsInput = {
@@ -1148,6 +1287,7 @@ export type UserUpdateWithoutBlogPostsInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlogPostsInput = {
@@ -1167,6 +1307,7 @@ export type UserUncheckedUpdateWithoutBlogPostsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserCreateWithoutActivityLogsInput = {
@@ -1186,6 +1327,7 @@ export type UserCreateWithoutActivityLogsInput = {
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   uploadedAssets?: Prisma.AssetCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -1205,6 +1347,7 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   uploadedAssets?: Prisma.AssetUncheckedCreateNestedManyWithoutUploadedByInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput
 }
 
 export type UserCreateOrConnectWithoutActivityLogsInput = {
@@ -1240,6 +1383,7 @@ export type UserUpdateWithoutActivityLogsInput = {
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -1259,6 +1403,7 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUpdateWithoutAssignedProjectsInput = {
@@ -1278,6 +1423,7 @@ export type UserUpdateWithoutAssignedProjectsInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedProjectsInput = {
@@ -1297,6 +1443,7 @@ export type UserUncheckedUpdateWithoutAssignedProjectsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
   uploadedAssets?: Prisma.AssetUncheckedUpdateManyWithoutUploadedByNestedInput
   reviewedQuotes?: Prisma.QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput
+  priorityOverrides?: Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutAssignedProjectsInput = {
@@ -1325,6 +1472,7 @@ export type UserCountOutputType = {
   activityLogs: number
   uploadedAssets: number
   reviewedQuotes: number
+  priorityOverrides: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1335,6 +1483,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   activityLogs?: boolean | UserCountOutputTypeCountActivityLogsArgs
   uploadedAssets?: boolean | UserCountOutputTypeCountUploadedAssetsArgs
   reviewedQuotes?: boolean | UserCountOutputTypeCountReviewedQuotesArgs
+  priorityOverrides?: boolean | UserCountOutputTypeCountPriorityOverridesArgs
 }
 
 /**
@@ -1396,6 +1545,13 @@ export type UserCountOutputTypeCountReviewedQuotesArgs<ExtArgs extends runtime.T
   where?: Prisma.QuoteRequestWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPriorityOverridesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuoteRequestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1415,6 +1571,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
   uploadedAssets?: boolean | Prisma.User$uploadedAssetsArgs<ExtArgs>
   reviewedQuotes?: boolean | Prisma.User$reviewedQuotesArgs<ExtArgs>
+  priorityOverrides?: boolean | Prisma.User$priorityOverridesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1466,6 +1623,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
   uploadedAssets?: boolean | Prisma.User$uploadedAssetsArgs<ExtArgs>
   reviewedQuotes?: boolean | Prisma.User$reviewedQuotesArgs<ExtArgs>
+  priorityOverrides?: boolean | Prisma.User$priorityOverridesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1481,6 +1639,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[]
     uploadedAssets: Prisma.$AssetPayload<ExtArgs>[]
     reviewedQuotes: Prisma.$QuoteRequestPayload<ExtArgs>[]
+    priorityOverrides: Prisma.$QuoteRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1894,6 +2053,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   activityLogs<T extends Prisma.User$activityLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   uploadedAssets<T extends Prisma.User$uploadedAssetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadedAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewedQuotes<T extends Prisma.User$reviewedQuotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedQuotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuoteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  priorityOverrides<T extends Prisma.User$priorityOverridesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$priorityOverridesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuoteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2473,6 +2633,30 @@ export type User$uploadedAssetsArgs<ExtArgs extends runtime.Types.Extensions.Int
  * User.reviewedQuotes
  */
 export type User$reviewedQuotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuoteRequest
+   */
+  select?: Prisma.QuoteRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuoteRequest
+   */
+  omit?: Prisma.QuoteRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuoteRequestInclude<ExtArgs> | null
+  where?: Prisma.QuoteRequestWhereInput
+  orderBy?: Prisma.QuoteRequestOrderByWithRelationInput | Prisma.QuoteRequestOrderByWithRelationInput[]
+  cursor?: Prisma.QuoteRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuoteRequestScalarFieldEnum | Prisma.QuoteRequestScalarFieldEnum[]
+}
+
+/**
+ * User.priorityOverrides
+ */
+export type User$priorityOverridesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the QuoteRequest
    */

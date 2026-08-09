@@ -17,6 +17,10 @@ export class QuoteService {
     return this.aiService.analyzeRfp(id, adminUserId, options)
   }
 
+  async overrideRFPPriority(id: string, humanPriority: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW', adminUserId: string) {
+    return this.aiService.overridePriority(id, humanPriority, adminUserId)
+  }
+
   async submitQuoteRequest(data: CreateQuoteData) {
     const quote = await this.quoteRepo.create(data)
 

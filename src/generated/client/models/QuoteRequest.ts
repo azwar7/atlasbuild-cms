@@ -28,10 +28,14 @@ export type AggregateQuoteRequest = {
 
 export type QuoteRequestAvgAggregateOutputType = {
   aiRiskScore: number | null
+  aiOpportunityScore: number | null
+  aiPriorityScore: number | null
 }
 
 export type QuoteRequestSumAggregateOutputType = {
   aiRiskScore: number | null
+  aiOpportunityScore: number | null
+  aiPriorityScore: number | null
 }
 
 export type QuoteRequestMinAggregateOutputType = {
@@ -53,6 +57,14 @@ export type QuoteRequestMinAggregateOutputType = {
   aiAnalyzedAt: Date | null
   aiAnalysisVersion: string | null
   aiRiskScore: number | null
+  aiOpportunityScore: number | null
+  aiPriorityScore: number | null
+  aiPriorityLevel: string | null
+  aiRecommendedAction: string | null
+  aiPriorityReason: string | null
+  aiHumanPriority: string | null
+  aiHumanOverrideAt: Date | null
+  aiHumanOverrideById: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -77,6 +89,14 @@ export type QuoteRequestMaxAggregateOutputType = {
   aiAnalyzedAt: Date | null
   aiAnalysisVersion: string | null
   aiRiskScore: number | null
+  aiOpportunityScore: number | null
+  aiPriorityScore: number | null
+  aiPriorityLevel: string | null
+  aiRecommendedAction: string | null
+  aiPriorityReason: string | null
+  aiHumanPriority: string | null
+  aiHumanOverrideAt: Date | null
+  aiHumanOverrideById: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -102,6 +122,14 @@ export type QuoteRequestCountAggregateOutputType = {
   aiAnalyzedAt: number
   aiAnalysisVersion: number
   aiRiskScore: number
+  aiOpportunityScore: number
+  aiPriorityScore: number
+  aiPriorityLevel: number
+  aiRecommendedAction: number
+  aiPriorityReason: number
+  aiHumanPriority: number
+  aiHumanOverrideAt: number
+  aiHumanOverrideById: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -111,10 +139,14 @@ export type QuoteRequestCountAggregateOutputType = {
 
 export type QuoteRequestAvgAggregateInputType = {
   aiRiskScore?: true
+  aiOpportunityScore?: true
+  aiPriorityScore?: true
 }
 
 export type QuoteRequestSumAggregateInputType = {
   aiRiskScore?: true
+  aiOpportunityScore?: true
+  aiPriorityScore?: true
 }
 
 export type QuoteRequestMinAggregateInputType = {
@@ -136,6 +168,14 @@ export type QuoteRequestMinAggregateInputType = {
   aiAnalyzedAt?: true
   aiAnalysisVersion?: true
   aiRiskScore?: true
+  aiOpportunityScore?: true
+  aiPriorityScore?: true
+  aiPriorityLevel?: true
+  aiRecommendedAction?: true
+  aiPriorityReason?: true
+  aiHumanPriority?: true
+  aiHumanOverrideAt?: true
+  aiHumanOverrideById?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -160,6 +200,14 @@ export type QuoteRequestMaxAggregateInputType = {
   aiAnalyzedAt?: true
   aiAnalysisVersion?: true
   aiRiskScore?: true
+  aiOpportunityScore?: true
+  aiPriorityScore?: true
+  aiPriorityLevel?: true
+  aiRecommendedAction?: true
+  aiPriorityReason?: true
+  aiHumanPriority?: true
+  aiHumanOverrideAt?: true
+  aiHumanOverrideById?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -185,6 +233,14 @@ export type QuoteRequestCountAggregateInputType = {
   aiAnalyzedAt?: true
   aiAnalysisVersion?: true
   aiRiskScore?: true
+  aiOpportunityScore?: true
+  aiPriorityScore?: true
+  aiPriorityLevel?: true
+  aiRecommendedAction?: true
+  aiPriorityReason?: true
+  aiHumanPriority?: true
+  aiHumanOverrideAt?: true
+  aiHumanOverrideById?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -297,6 +353,14 @@ export type QuoteRequestGroupByOutputType = {
   aiAnalyzedAt: Date | null
   aiAnalysisVersion: string | null
   aiRiskScore: number | null
+  aiOpportunityScore: number | null
+  aiPriorityScore: number | null
+  aiPriorityLevel: string | null
+  aiRecommendedAction: string | null
+  aiPriorityReason: string | null
+  aiHumanPriority: string | null
+  aiHumanOverrideAt: Date | null
+  aiHumanOverrideById: string | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -345,10 +409,19 @@ export type QuoteRequestWhereInput = {
   aiAnalyzedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   aiAnalysisVersion?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   aiRiskScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiOpportunityScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiPriorityScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiPriorityLevel?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiRecommendedAction?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiPriorityReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiHumanPriority?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiHumanOverrideAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  aiHumanOverrideById?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   reviewedByAdmin?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  aiHumanOverrideBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type QuoteRequestOrderByWithRelationInput = {
@@ -371,10 +444,19 @@ export type QuoteRequestOrderByWithRelationInput = {
   aiAnalyzedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   aiAnalysisVersion?: Prisma.SortOrderInput | Prisma.SortOrder
   aiRiskScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiPriorityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiRecommendedAction?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiPriorityReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiHumanPriority?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiHumanOverrideAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiHumanOverrideById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedByAdmin?: Prisma.UserOrderByWithRelationInput
+  aiHumanOverrideBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type QuoteRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -400,10 +482,19 @@ export type QuoteRequestWhereUniqueInput = Prisma.AtLeast<{
   aiAnalyzedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   aiAnalysisVersion?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   aiRiskScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiOpportunityScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiPriorityScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiPriorityLevel?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiRecommendedAction?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiPriorityReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiHumanPriority?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiHumanOverrideAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  aiHumanOverrideById?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   reviewedByAdmin?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  aiHumanOverrideBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type QuoteRequestOrderByWithAggregationInput = {
@@ -426,6 +517,14 @@ export type QuoteRequestOrderByWithAggregationInput = {
   aiAnalyzedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   aiAnalysisVersion?: Prisma.SortOrderInput | Prisma.SortOrder
   aiRiskScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiPriorityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiRecommendedAction?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiPriorityReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiHumanPriority?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiHumanOverrideAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiHumanOverrideById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -459,6 +558,14 @@ export type QuoteRequestScalarWhereWithAggregatesInput = {
   aiAnalyzedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
   aiAnalysisVersion?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
   aiRiskScore?: Prisma.IntNullableWithAggregatesFilter<"QuoteRequest"> | number | null
+  aiOpportunityScore?: Prisma.IntNullableWithAggregatesFilter<"QuoteRequest"> | number | null
+  aiPriorityScore?: Prisma.IntNullableWithAggregatesFilter<"QuoteRequest"> | number | null
+  aiPriorityLevel?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  aiRecommendedAction?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  aiPriorityReason?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  aiHumanPriority?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
+  aiHumanOverrideAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
+  aiHumanOverrideById?: Prisma.StringNullableWithAggregatesFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuoteRequest"> | Date | string | null
@@ -483,10 +590,18 @@ export type QuoteRequestCreateInput = {
   aiAnalyzedAt?: Date | string | null
   aiAnalysisVersion?: string | null
   aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   reviewedByAdmin?: Prisma.UserCreateNestedOneWithoutReviewedQuotesInput
+  aiHumanOverrideBy?: Prisma.UserCreateNestedOneWithoutPriorityOverridesInput
 }
 
 export type QuoteRequestUncheckedCreateInput = {
@@ -509,6 +624,14 @@ export type QuoteRequestUncheckedCreateInput = {
   aiAnalyzedAt?: Date | string | null
   aiAnalysisVersion?: string | null
   aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
+  aiHumanOverrideById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -533,10 +656,18 @@ export type QuoteRequestUpdateInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedByAdmin?: Prisma.UserUpdateOneWithoutReviewedQuotesNestedInput
+  aiHumanOverrideBy?: Prisma.UserUpdateOneWithoutPriorityOverridesNestedInput
 }
 
 export type QuoteRequestUncheckedUpdateInput = {
@@ -559,6 +690,14 @@ export type QuoteRequestUncheckedUpdateInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiHumanOverrideById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -584,6 +723,14 @@ export type QuoteRequestCreateManyInput = {
   aiAnalyzedAt?: Date | string | null
   aiAnalysisVersion?: string | null
   aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
+  aiHumanOverrideById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -608,6 +755,13 @@ export type QuoteRequestUpdateManyMutationInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -633,6 +787,14 @@ export type QuoteRequestUncheckedUpdateManyInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiHumanOverrideById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -668,6 +830,14 @@ export type QuoteRequestCountOrderByAggregateInput = {
   aiAnalyzedAt?: Prisma.SortOrder
   aiAnalysisVersion?: Prisma.SortOrder
   aiRiskScore?: Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrder
+  aiPriorityLevel?: Prisma.SortOrder
+  aiRecommendedAction?: Prisma.SortOrder
+  aiPriorityReason?: Prisma.SortOrder
+  aiHumanPriority?: Prisma.SortOrder
+  aiHumanOverrideAt?: Prisma.SortOrder
+  aiHumanOverrideById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -675,6 +845,8 @@ export type QuoteRequestCountOrderByAggregateInput = {
 
 export type QuoteRequestAvgOrderByAggregateInput = {
   aiRiskScore?: Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrder
 }
 
 export type QuoteRequestMaxOrderByAggregateInput = {
@@ -696,6 +868,14 @@ export type QuoteRequestMaxOrderByAggregateInput = {
   aiAnalyzedAt?: Prisma.SortOrder
   aiAnalysisVersion?: Prisma.SortOrder
   aiRiskScore?: Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrder
+  aiPriorityLevel?: Prisma.SortOrder
+  aiRecommendedAction?: Prisma.SortOrder
+  aiPriorityReason?: Prisma.SortOrder
+  aiHumanPriority?: Prisma.SortOrder
+  aiHumanOverrideAt?: Prisma.SortOrder
+  aiHumanOverrideById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -720,6 +900,14 @@ export type QuoteRequestMinOrderByAggregateInput = {
   aiAnalyzedAt?: Prisma.SortOrder
   aiAnalysisVersion?: Prisma.SortOrder
   aiRiskScore?: Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrder
+  aiPriorityLevel?: Prisma.SortOrder
+  aiRecommendedAction?: Prisma.SortOrder
+  aiPriorityReason?: Prisma.SortOrder
+  aiHumanPriority?: Prisma.SortOrder
+  aiHumanOverrideAt?: Prisma.SortOrder
+  aiHumanOverrideById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -727,6 +915,8 @@ export type QuoteRequestMinOrderByAggregateInput = {
 
 export type QuoteRequestSumOrderByAggregateInput = {
   aiRiskScore?: Prisma.SortOrder
+  aiOpportunityScore?: Prisma.SortOrder
+  aiPriorityScore?: Prisma.SortOrder
 }
 
 export type QuoteRequestCreateNestedManyWithoutReviewedByAdminInput = {
@@ -736,10 +926,24 @@ export type QuoteRequestCreateNestedManyWithoutReviewedByAdminInput = {
   connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
 }
 
+export type QuoteRequestCreateNestedManyWithoutAiHumanOverrideByInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput> | Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput[] | Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput | Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput[]
+  createMany?: Prisma.QuoteRequestCreateManyAiHumanOverrideByInputEnvelope
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+}
+
 export type QuoteRequestUncheckedCreateNestedManyWithoutReviewedByAdminInput = {
   create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput> | Prisma.QuoteRequestCreateWithoutReviewedByAdminInput[] | Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput[]
   connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput | Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput[]
   createMany?: Prisma.QuoteRequestCreateManyReviewedByAdminInputEnvelope
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+}
+
+export type QuoteRequestUncheckedCreateNestedManyWithoutAiHumanOverrideByInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput> | Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput[] | Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput | Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput[]
+  createMany?: Prisma.QuoteRequestCreateManyAiHumanOverrideByInputEnvelope
   connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
 }
 
@@ -757,6 +961,20 @@ export type QuoteRequestUpdateManyWithoutReviewedByAdminNestedInput = {
   deleteMany?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
 }
 
+export type QuoteRequestUpdateManyWithoutAiHumanOverrideByNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput> | Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput[] | Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput | Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput[]
+  upsert?: Prisma.QuoteRequestUpsertWithWhereUniqueWithoutAiHumanOverrideByInput | Prisma.QuoteRequestUpsertWithWhereUniqueWithoutAiHumanOverrideByInput[]
+  createMany?: Prisma.QuoteRequestCreateManyAiHumanOverrideByInputEnvelope
+  set?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  disconnect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  delete?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  update?: Prisma.QuoteRequestUpdateWithWhereUniqueWithoutAiHumanOverrideByInput | Prisma.QuoteRequestUpdateWithWhereUniqueWithoutAiHumanOverrideByInput[]
+  updateMany?: Prisma.QuoteRequestUpdateManyWithWhereWithoutAiHumanOverrideByInput | Prisma.QuoteRequestUpdateManyWithWhereWithoutAiHumanOverrideByInput[]
+  deleteMany?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
+}
+
 export type QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput = {
   create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutReviewedByAdminInput, Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput> | Prisma.QuoteRequestCreateWithoutReviewedByAdminInput[] | Prisma.QuoteRequestUncheckedCreateWithoutReviewedByAdminInput[]
   connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput | Prisma.QuoteRequestCreateOrConnectWithoutReviewedByAdminInput[]
@@ -768,6 +986,20 @@ export type QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminNestedInput = {
   connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
   update?: Prisma.QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput | Prisma.QuoteRequestUpdateWithWhereUniqueWithoutReviewedByAdminInput[]
   updateMany?: Prisma.QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput | Prisma.QuoteRequestUpdateManyWithWhereWithoutReviewedByAdminInput[]
+  deleteMany?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
+}
+
+export type QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput> | Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput[] | Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput[]
+  connectOrCreate?: Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput | Prisma.QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput[]
+  upsert?: Prisma.QuoteRequestUpsertWithWhereUniqueWithoutAiHumanOverrideByInput | Prisma.QuoteRequestUpsertWithWhereUniqueWithoutAiHumanOverrideByInput[]
+  createMany?: Prisma.QuoteRequestCreateManyAiHumanOverrideByInputEnvelope
+  set?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  disconnect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  delete?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  connect?: Prisma.QuoteRequestWhereUniqueInput | Prisma.QuoteRequestWhereUniqueInput[]
+  update?: Prisma.QuoteRequestUpdateWithWhereUniqueWithoutAiHumanOverrideByInput | Prisma.QuoteRequestUpdateWithWhereUniqueWithoutAiHumanOverrideByInput[]
+  updateMany?: Prisma.QuoteRequestUpdateManyWithWhereWithoutAiHumanOverrideByInput | Prisma.QuoteRequestUpdateManyWithWhereWithoutAiHumanOverrideByInput[]
   deleteMany?: Prisma.QuoteRequestScalarWhereInput | Prisma.QuoteRequestScalarWhereInput[]
 }
 
@@ -802,9 +1034,17 @@ export type QuoteRequestCreateWithoutReviewedByAdminInput = {
   aiAnalyzedAt?: Date | string | null
   aiAnalysisVersion?: string | null
   aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  aiHumanOverrideBy?: Prisma.UserCreateNestedOneWithoutPriorityOverridesInput
 }
 
 export type QuoteRequestUncheckedCreateWithoutReviewedByAdminInput = {
@@ -826,6 +1066,14 @@ export type QuoteRequestUncheckedCreateWithoutReviewedByAdminInput = {
   aiAnalyzedAt?: Date | string | null
   aiAnalysisVersion?: string | null
   aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
+  aiHumanOverrideById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -838,6 +1086,80 @@ export type QuoteRequestCreateOrConnectWithoutReviewedByAdminInput = {
 
 export type QuoteRequestCreateManyReviewedByAdminInputEnvelope = {
   data: Prisma.QuoteRequestCreateManyReviewedByAdminInput | Prisma.QuoteRequestCreateManyReviewedByAdminInput[]
+  skipDuplicates?: boolean
+}
+
+export type QuoteRequestCreateWithoutAiHumanOverrideByInput = {
+  id?: string
+  name: string
+  email: string
+  company?: string | null
+  projectTitle: string
+  sector: $Enums.ProjectSector
+  budgetRange: string
+  location: string
+  description: string
+  blueprintUrl?: string | null
+  status?: $Enums.QuoteStatus
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  reviewedByAdmin?: Prisma.UserCreateNestedOneWithoutReviewedQuotesInput
+}
+
+export type QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput = {
+  id?: string
+  name: string
+  email: string
+  company?: string | null
+  projectTitle: string
+  sector: $Enums.ProjectSector
+  budgetRange: string
+  location: string
+  description: string
+  blueprintUrl?: string | null
+  status?: $Enums.QuoteStatus
+  reviewedByAdminId?: string | null
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type QuoteRequestCreateOrConnectWithoutAiHumanOverrideByInput = {
+  where: Prisma.QuoteRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput>
+}
+
+export type QuoteRequestCreateManyAiHumanOverrideByInputEnvelope = {
+  data: Prisma.QuoteRequestCreateManyAiHumanOverrideByInput | Prisma.QuoteRequestCreateManyAiHumanOverrideByInput[]
   skipDuplicates?: boolean
 }
 
@@ -880,9 +1202,33 @@ export type QuoteRequestScalarWhereInput = {
   aiAnalyzedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
   aiAnalysisVersion?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   aiRiskScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiOpportunityScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiPriorityScore?: Prisma.IntNullableFilter<"QuoteRequest"> | number | null
+  aiPriorityLevel?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiRecommendedAction?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiPriorityReason?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiHumanPriority?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
+  aiHumanOverrideAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+  aiHumanOverrideById?: Prisma.StringNullableFilter<"QuoteRequest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuoteRequest"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuoteRequest"> | Date | string | null
+}
+
+export type QuoteRequestUpsertWithWhereUniqueWithoutAiHumanOverrideByInput = {
+  where: Prisma.QuoteRequestWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuoteRequestUpdateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedUpdateWithoutAiHumanOverrideByInput>
+  create: Prisma.XOR<Prisma.QuoteRequestCreateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedCreateWithoutAiHumanOverrideByInput>
+}
+
+export type QuoteRequestUpdateWithWhereUniqueWithoutAiHumanOverrideByInput = {
+  where: Prisma.QuoteRequestWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuoteRequestUpdateWithoutAiHumanOverrideByInput, Prisma.QuoteRequestUncheckedUpdateWithoutAiHumanOverrideByInput>
+}
+
+export type QuoteRequestUpdateManyWithWhereWithoutAiHumanOverrideByInput = {
+  where: Prisma.QuoteRequestScalarWhereInput
+  data: Prisma.XOR<Prisma.QuoteRequestUpdateManyMutationInput, Prisma.QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByInput>
 }
 
 export type QuoteRequestCreateManyReviewedByAdminInput = {
@@ -904,6 +1250,46 @@ export type QuoteRequestCreateManyReviewedByAdminInput = {
   aiAnalyzedAt?: Date | string | null
   aiAnalysisVersion?: string | null
   aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
+  aiHumanOverrideById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type QuoteRequestCreateManyAiHumanOverrideByInput = {
+  id?: string
+  name: string
+  email: string
+  company?: string | null
+  projectTitle: string
+  sector: $Enums.ProjectSector
+  budgetRange: string
+  location: string
+  description: string
+  blueprintUrl?: string | null
+  status?: $Enums.QuoteStatus
+  reviewedByAdminId?: string | null
+  reviewedAt?: Date | string | null
+  rejectionReason?: string | null
+  adminNotes?: string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Date | string | null
+  aiAnalysisVersion?: string | null
+  aiRiskScore?: number | null
+  aiOpportunityScore?: number | null
+  aiPriorityScore?: number | null
+  aiPriorityLevel?: string | null
+  aiRecommendedAction?: string | null
+  aiPriorityReason?: string | null
+  aiHumanPriority?: string | null
+  aiHumanOverrideAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -928,9 +1314,17 @@ export type QuoteRequestUpdateWithoutReviewedByAdminInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiHumanOverrideBy?: Prisma.UserUpdateOneWithoutPriorityOverridesNestedInput
 }
 
 export type QuoteRequestUncheckedUpdateWithoutReviewedByAdminInput = {
@@ -952,6 +1346,14 @@ export type QuoteRequestUncheckedUpdateWithoutReviewedByAdminInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiHumanOverrideById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -976,6 +1378,110 @@ export type QuoteRequestUncheckedUpdateManyWithoutReviewedByAdminInput = {
   aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiHumanOverrideById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type QuoteRequestUpdateWithoutAiHumanOverrideByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  sector?: Prisma.EnumProjectSectorFieldUpdateOperationsInput | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedByAdmin?: Prisma.UserUpdateOneWithoutReviewedQuotesNestedInput
+}
+
+export type QuoteRequestUncheckedUpdateWithoutAiHumanOverrideByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  sector?: Prisma.EnumProjectSectorFieldUpdateOperationsInput | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type QuoteRequestUncheckedUpdateManyWithoutAiHumanOverrideByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  sector?: Prisma.EnumProjectSectorFieldUpdateOperationsInput | $Enums.ProjectSector
+  budgetRange?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  blueprintUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  reviewedByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  aiAnalyzedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  aiAnalysisVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRiskScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiOpportunityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  aiPriorityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiRecommendedAction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiPriorityReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanPriority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiHumanOverrideAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1003,10 +1509,19 @@ export type QuoteRequestSelect<ExtArgs extends runtime.Types.Extensions.Internal
   aiAnalyzedAt?: boolean
   aiAnalysisVersion?: boolean
   aiRiskScore?: boolean
+  aiOpportunityScore?: boolean
+  aiPriorityScore?: boolean
+  aiPriorityLevel?: boolean
+  aiRecommendedAction?: boolean
+  aiPriorityReason?: boolean
+  aiHumanPriority?: boolean
+  aiHumanOverrideAt?: boolean
+  aiHumanOverrideById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+  aiHumanOverrideBy?: boolean | Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>
 }, ExtArgs["result"]["quoteRequest"]>
 
 export type QuoteRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1029,10 +1544,19 @@ export type QuoteRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   aiAnalyzedAt?: boolean
   aiAnalysisVersion?: boolean
   aiRiskScore?: boolean
+  aiOpportunityScore?: boolean
+  aiPriorityScore?: boolean
+  aiPriorityLevel?: boolean
+  aiRecommendedAction?: boolean
+  aiPriorityReason?: boolean
+  aiHumanPriority?: boolean
+  aiHumanOverrideAt?: boolean
+  aiHumanOverrideById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+  aiHumanOverrideBy?: boolean | Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>
 }, ExtArgs["result"]["quoteRequest"]>
 
 export type QuoteRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1055,10 +1579,19 @@ export type QuoteRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   aiAnalyzedAt?: boolean
   aiAnalysisVersion?: boolean
   aiRiskScore?: boolean
+  aiOpportunityScore?: boolean
+  aiPriorityScore?: boolean
+  aiPriorityLevel?: boolean
+  aiRecommendedAction?: boolean
+  aiPriorityReason?: boolean
+  aiHumanPriority?: boolean
+  aiHumanOverrideAt?: boolean
+  aiHumanOverrideById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+  aiHumanOverrideBy?: boolean | Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>
 }, ExtArgs["result"]["quoteRequest"]>
 
 export type QuoteRequestSelectScalar = {
@@ -1081,26 +1614,38 @@ export type QuoteRequestSelectScalar = {
   aiAnalyzedAt?: boolean
   aiAnalysisVersion?: boolean
   aiRiskScore?: boolean
+  aiOpportunityScore?: boolean
+  aiPriorityScore?: boolean
+  aiPriorityLevel?: boolean
+  aiRecommendedAction?: boolean
+  aiPriorityReason?: boolean
+  aiHumanPriority?: boolean
+  aiHumanOverrideAt?: boolean
+  aiHumanOverrideById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type QuoteRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "projectTitle" | "sector" | "budgetRange" | "location" | "description" | "blueprintUrl" | "status" | "reviewedByAdminId" | "reviewedAt" | "rejectionReason" | "adminNotes" | "aiAnalysis" | "aiAnalyzedAt" | "aiAnalysisVersion" | "aiRiskScore" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quoteRequest"]>
+export type QuoteRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "projectTitle" | "sector" | "budgetRange" | "location" | "description" | "blueprintUrl" | "status" | "reviewedByAdminId" | "reviewedAt" | "rejectionReason" | "adminNotes" | "aiAnalysis" | "aiAnalyzedAt" | "aiAnalysisVersion" | "aiRiskScore" | "aiOpportunityScore" | "aiPriorityScore" | "aiPriorityLevel" | "aiRecommendedAction" | "aiPriorityReason" | "aiHumanPriority" | "aiHumanOverrideAt" | "aiHumanOverrideById" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quoteRequest"]>
 export type QuoteRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+  aiHumanOverrideBy?: boolean | Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>
 }
 export type QuoteRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+  aiHumanOverrideBy?: boolean | Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>
 }
 export type QuoteRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   reviewedByAdmin?: boolean | Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>
+  aiHumanOverrideBy?: boolean | Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>
 }
 
 export type $QuoteRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "QuoteRequest"
   objects: {
     reviewedByAdmin: Prisma.$UserPayload<ExtArgs> | null
+    aiHumanOverrideBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1122,6 +1667,14 @@ export type $QuoteRequestPayload<ExtArgs extends runtime.Types.Extensions.Intern
     aiAnalyzedAt: Date | null
     aiAnalysisVersion: string | null
     aiRiskScore: number | null
+    aiOpportunityScore: number | null
+    aiPriorityScore: number | null
+    aiPriorityLevel: string | null
+    aiRecommendedAction: string | null
+    aiPriorityReason: string | null
+    aiHumanPriority: string | null
+    aiHumanOverrideAt: Date | null
+    aiHumanOverrideById: string | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1520,6 +2073,7 @@ readonly fields: QuoteRequestFieldRefs;
 export interface Prisma__QuoteRequestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   reviewedByAdmin<T extends Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuoteRequest$reviewedByAdminArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aiHumanOverrideBy<T extends Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuoteRequest$aiHumanOverrideByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1568,6 +2122,14 @@ export interface QuoteRequestFieldRefs {
   readonly aiAnalyzedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly aiAnalysisVersion: Prisma.FieldRef<"QuoteRequest", 'String'>
   readonly aiRiskScore: Prisma.FieldRef<"QuoteRequest", 'Int'>
+  readonly aiOpportunityScore: Prisma.FieldRef<"QuoteRequest", 'Int'>
+  readonly aiPriorityScore: Prisma.FieldRef<"QuoteRequest", 'Int'>
+  readonly aiPriorityLevel: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly aiRecommendedAction: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly aiPriorityReason: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly aiHumanPriority: Prisma.FieldRef<"QuoteRequest", 'String'>
+  readonly aiHumanOverrideAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
+  readonly aiHumanOverrideById: Prisma.FieldRef<"QuoteRequest", 'String'>
   readonly createdAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"QuoteRequest", 'DateTime'>
@@ -1975,6 +2537,25 @@ export type QuoteRequestDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
  * QuoteRequest.reviewedByAdmin
  */
 export type QuoteRequest$reviewedByAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * QuoteRequest.aiHumanOverrideBy
+ */
+export type QuoteRequest$aiHumanOverrideByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

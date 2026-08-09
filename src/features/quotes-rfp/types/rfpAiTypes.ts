@@ -10,4 +10,10 @@ export interface RfpAiAnalysisResponse {
   version: string
   cached: boolean
   providerUsed?: string
+  priorityLevel?: string
+  priorityScore?: number
+  opportunityScore?: number
+  riskScore?: number
+  recommendedAction?: string
+  humanPriority?: string | null
 }
