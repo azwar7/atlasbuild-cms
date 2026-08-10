@@ -2,6 +2,7 @@ import prisma from "@/shared/lib/db";
 import Link from "next/link";
 import { PhaseStatus } from "@/generated/client";
 import AccountProfileDropdown from "@/components/AccountProfileDropdown";
+import ProjectAiAssistant from "@/components/ProjectAiAssistant";
 
 export const revalidate = 0;
 
@@ -207,6 +208,9 @@ export default async function ClientWorkspacePage({ params }: { params: Promise<
                 </div>
               </div>
             </section>
+
+            {/* AI Project Assistant Section */}
+            <ProjectAiAssistant projectId={id} projectTitle={project.title} />
 
             {/* Split Content Grid: Left Parameters & Right Feed */}
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
