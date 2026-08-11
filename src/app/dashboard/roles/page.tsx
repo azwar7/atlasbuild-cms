@@ -16,8 +16,10 @@ export default function AccessRolesPage() {
       <aside className="w-[220px] bg-[#0c1017] border-r border-[#334155]/40 flex flex-col justify-between p-4 shrink-0 fixed top-0 bottom-0 z-50">
         <div>
           <div className="flex items-center gap-3 mb-8 px-2">
-            <img alt="AtlasBuild Logo" className="h-8 w-8 object-contain" src="/images/logo.png" />
-            <span className="font-headline-md font-bold text-xl text-on-surface tracking-tight">AtlasBuild</span>
+            <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+              <img alt="AtlasBuild Logo" className="h-8 w-8 object-contain" src="/images/logo.png" />
+              <span className="font-headline-md font-bold text-xl text-on-surface tracking-tight">AtlasBuild</span>
+            </Link>
           </div>
 
           <nav className="flex flex-col gap-1.5">

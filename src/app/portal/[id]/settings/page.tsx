@@ -24,7 +24,7 @@ export default async function SettingsPage({
       {/* Top Header */}
       <header className="fixed top-0 w-full h-16 bg-surface/80 backdrop-blur-xl border-b border-[#334155] z-50 flex items-center justify-between px-6 md:px-8">
         <div className="flex items-center gap-4">
-          <Link href={`/portal/${id}`} className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <img alt="AtlasBuild Logo" className="h-7 w-7 object-contain" src="/images/logo.png" />
             <span className="font-headline-md font-bold text-lg text-on-surface">AtlasBuild</span>
           </Link>

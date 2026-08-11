@@ -421,8 +421,10 @@ export default function RFPProposalsPage() {
       {/* Sidebar Navigation */}
       <aside className="fixed left-0 top-0 h-full w-[220px] bg-[#0f131c]/90 border-r border-[#334155]/40 flex flex-col z-40">
         <div className="h-16 px-6 flex items-center gap-3 border-b border-[#334155]/30">
-          <img src="/images/logo.png" alt="AtlasBuild Logo" className="h-7 w-auto" />
-          <span className="font-headline font-bold text-lg text-white">AtlasBuild</span>
+          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <img src="/images/logo.png" alt="AtlasBuild Logo" className="h-7 w-auto" />
+            <span className="font-headline font-bold text-lg text-white">AtlasBuild</span>
+          </Link>
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-1">
