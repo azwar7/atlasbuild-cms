@@ -62,6 +62,13 @@ export default function AccessRolesPage() {
               <span className="material-symbols-outlined mr-3 text-[20px]">admin_panel_settings</span>
               Access Roles
             </Link>
+
+            <div className="pt-3 mt-3 border-t border-[#7dd3fc]/15">
+              <Link href="/dashboard/settings" className="flex items-center px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-md text-sm font-semibold">
+                <span className="material-symbols-outlined mr-3 text-[20px]">settings</span>
+                Settings
+              </Link>
+            </div>
           </nav>
         </div>
 

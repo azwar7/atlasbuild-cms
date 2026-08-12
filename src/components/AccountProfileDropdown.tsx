@@ -118,34 +118,40 @@ export default function AccountProfileDropdown({
           {/* Quick Menu Actions */}
           <div className="flex flex-col gap-1 pt-2 border-t border-white/10">
             <Link
-              href={portalId ? `/portal/${portalId}/settings` : "/dashboard/roles"}
+              href="/dashboard/settings?tab=profile"
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs text-white/90 hover:text-white hover:bg-white/10 transition-colors font-medium"
             >
-              <span className="material-symbols-outlined text-primary text-[18px]">manage_accounts</span>
-              <span>Account & Security Settings</span>
+              <span className="material-symbols-outlined text-primary text-[18px]">person</span>
+              <span>My Profile</span>
             </Link>
 
             <Link
-              href={portalId ? `/portal/${portalId}/blueprints` : "/dashboard"}
+              href="/dashboard/settings?tab=general"
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs text-white/90 hover:text-white hover:bg-white/10 transition-colors font-medium"
             >
-              <span className="material-symbols-outlined text-[#7dd3fc] text-[18px]">badge</span>
-              <span>Permissions & Role Access</span>
+              <span className="material-symbols-outlined text-[#7dd3fc] text-[18px]">settings</span>
+              <span>Account</span>
             </Link>
           </div>
 
-          {/* Sign Out Button */}
+          {/* Sign Out / Logout Button */}
           <div className="pt-2 border-t border-white/10">
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-400 hover:bg-red-500 hover:text-white transition-all text-xs font-label font-bold uppercase tracking-wider"
+            <button
+              type="button"
+              onClick={async () => {
+                setIsOpen(false);
+                try {
+                  await fetch('/api/auth/logout', { method: 'POST' });
+                } catch (e) {}
+                window.location.href = '/login';
+              }}
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-400 hover:bg-red-500 hover:text-white transition-all text-xs font-label font-bold uppercase tracking-wider cursor-pointer"
             >
               <span className="material-symbols-outlined text-[16px]">logout</span>
-              <span>Secure Sign Out</span>
-            </Link>
+              <span>Logout</span>
+            </button>
           </div>
 
         </div>
