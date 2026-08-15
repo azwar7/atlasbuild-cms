@@ -34,6 +34,9 @@ export default function LandingFooter() {
         {/* EXPLORATION COLUMN */}
         <div className="flex flex-col gap-3">
           <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Exploration</h4>
+          <Link href="/construction-website-builder" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
+            Website Builder &amp; CMS
+          </Link>
           <Link href="/portfolio" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
             Infrastructure Portfolio
           </Link>

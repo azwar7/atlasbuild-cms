@@ -6,15 +6,19 @@ import { createPageMetadata, PageMetadataOptions } from "./config";
 export const PLANNED_SEO_PAGES: Record<string, PageMetadataOptions> = {
   // 1. Core Builder Page
   constructionWebsiteBuilder: {
-    title: "Construction Website Builder & CMS Platform | AtlasBuild",
+    title: "Construction Website Builder | AtlasBuild",
     description:
-      "Build a high-performance construction company website with native project portfolios, client portals, and AI RFP intake. Engineered for general contractors.",
+      "Build and manage a professional construction company website with AtlasBuild, a specialized CMS for project portfolios, RFP intake, and client workflows.",
     path: "/construction-website-builder",
     keywords: [
       "construction website builder",
       "website builder for construction companies",
+      "construction company website builder",
+      "construction website software",
       "construction company website software",
       "contractor website builder",
+      "construction website CMS",
+      "construction business website builder",
     ],
   },
 
