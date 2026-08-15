@@ -410,7 +410,7 @@ export default function ConstructionWebsiteBuilderPage() {
                     src="/images/power-plant.jpg"
                   />
                   <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 rounded-full px-3.5 py-1 text-[10px] font-label uppercase tracking-widest text-primary font-bold">
-                    Industrial &amp; Energy
+                    Infrastructure
                   </div>
                 </div>
                 <div className="p-6 flex flex-col gap-3">

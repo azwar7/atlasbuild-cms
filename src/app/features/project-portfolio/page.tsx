@@ -333,7 +333,7 @@ export default function ProjectPortfolioFeaturePage() {
                   Real Construction Projects Showcased on AtlasBuild
                 </h2>
                 <p className="text-sm sm:text-base font-body text-on-surface-variant leading-relaxed">
-                  Discover how general contractors present commercial, civil infrastructure, and energy builds using AtlasBuild's public project registry.
+                  Discover how general contractors present commercial, healthcare, and heavy civil infrastructure builds using AtlasBuild's public project registry.
                 </p>
               </div>
 
@@ -413,12 +413,12 @@ export default function ProjectPortfolioFeaturePage() {
               >
                 <div className="relative w-full h-56 overflow-hidden bg-surface-dim">
                   <img
-                    alt="Atlas Power Facility — Heavy Industrial and Clean Energy Build"
+                    alt="Atlas Power Facility — Heavy Infrastructure and Substation Build"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
                     src="/images/power-plant.jpg"
                   />
                   <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 rounded-full px-3.5 py-1 text-[10px] font-label uppercase tracking-widest text-primary font-bold">
-                    ENERGY &amp; UTILITIES
+                    INFRASTRUCTURE
                   </div>
                 </div>
                 <div className="p-6 flex flex-col gap-3">
@@ -426,7 +426,7 @@ export default function ProjectPortfolioFeaturePage() {
                     Atlas Power Facility
                   </h3>
                   <p className="text-xs text-on-surface-variant leading-relaxed">
-                    Clean energy grid integration, high-capacity electrical switchgear housing, and fortified control substations.
+                    Clean energy grid infrastructure, high-capacity electrical switchgear housing, and fortified control substations.
                   </p>
                   <div className="flex items-center justify-between text-xs font-mono text-white/60 pt-2 border-t border-white/5">
                     <span>Austin, TX</span>

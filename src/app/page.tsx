@@ -211,12 +211,12 @@ export default function LandingPage() {
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
                       <img 
-                        alt="Atlas Power Facility — Energy and Utilities Civil Infrastructure" 
+                        alt="Atlas Power Facility — Infrastructure and Substation Civil Build" 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80" 
                         src="/images/power-plant.jpg" 
                       />
                       <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 text-[10px] font-label uppercase tracking-widest text-white font-bold">
-                        Energy &amp; Utilities
+                        Infrastructure
                       </div>
                     </div>
                     <div className="p-6 flex flex-col gap-4">
