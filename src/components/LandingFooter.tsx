@@ -37,6 +37,9 @@ export default function LandingFooter() {
           <Link href="/construction-website-builder" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
             Website Builder &amp; CMS
           </Link>
+          <Link href="/features/project-portfolio" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
+            Project Portfolio Software
+          </Link>
           <Link href="/portfolio" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
             Infrastructure Portfolio
           </Link>

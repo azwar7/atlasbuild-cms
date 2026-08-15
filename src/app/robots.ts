@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: [
         "/",
         "/construction-website-builder",
+        "/features/project-portfolio",
         "/portfolio",
         "/quotes",
         "/careers",

@@ -24,15 +24,22 @@ export const PLANNED_SEO_PAGES: Record<string, PageMetadataOptions> = {
 
   // 2. Project Portfolio Feature
   projectPortfolioFeature: {
-    title: "Construction Project Portfolio & Showcase Software | AtlasBuild",
+    title: "Construction Project Portfolio Software | AtlasBuild",
     description:
-      "Showcase heavy civil builds, commercial developments, and industrial case studies with sector filtering, completion rates, and CAD blueprint distribution.",
+      "Showcase construction projects with AtlasBuild's project portfolio software. Organize project experience, highlight capabilities, and build a professional construction portfolio.",
     path: "/features/project-portfolio",
     keywords: [
       "construction project portfolio software",
+      "construction project portfolio",
       "construction project showcase",
+      "construction portfolio website",
+      "construction project showcase website",
       "construction case study CMS",
-      "contractor project gallery software",
+      "construction portfolio software",
+      "construction project management portfolio",
+      "contractor project portfolio",
+      "construction company portfolio",
+      "showcase construction projects online",
     ],
   },
 
