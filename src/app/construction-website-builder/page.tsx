@@ -344,7 +344,7 @@ export default function ConstructionWebsiteBuilderPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               <Link
-                href="/portal/proj-1"
+                href="/portfolio?query=Coastal"
                 className="group flex flex-col bg-[#0f131c]/60 backdrop-blur-[20px] rounded-2xl border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors shadow-2xl"
               >
                 <div className="relative w-full h-56 overflow-hidden bg-surface-dim">
@@ -372,7 +372,7 @@ export default function ConstructionWebsiteBuilderPage() {
               </Link>
 
               <Link
-                href="/portal/proj-2"
+                href="/portfolio?query=Skyline"
                 className="group flex flex-col bg-[#0f131c]/60 backdrop-blur-[20px] rounded-2xl border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors shadow-2xl"
               >
                 <div className="relative w-full h-56 overflow-hidden bg-surface-dim">
@@ -400,7 +400,7 @@ export default function ConstructionWebsiteBuilderPage() {
               </Link>
 
               <Link
-                href="/portal/proj-3"
+                href="/portfolio?query=Atlas"
                 className="group flex flex-col bg-[#0f131c]/60 backdrop-blur-[20px] rounded-2xl border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors shadow-2xl"
               >
                 <div className="relative w-full h-56 overflow-hidden bg-surface-dim">

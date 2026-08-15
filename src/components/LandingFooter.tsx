@@ -46,8 +46,8 @@ export default function LandingFooter() {
           <Link href="/about" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
             Technical Specifications
           </Link>
-          <Link href="/portal/proj-1/blueprints" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
-            Client Blueprint Portal
+          <Link href="/contact" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
+            Engineering Inquiries
           </Link>
         </div>
 

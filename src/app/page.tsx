@@ -158,7 +158,7 @@ export default function LandingPage() {
                   
                   {/* Project 1 */}
                   <Link 
-                    href="/portal/proj-1" 
+                    href="/portfolio?query=Coastal" 
                     className="group flex flex-col bg-[#0f131c]/60 backdrop-blur-[20px] rounded-2xl border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors shadow-2xl"
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
@@ -182,7 +182,7 @@ export default function LandingPage() {
 
                   {/* Project 2 */}
                   <Link 
-                    href="/portal/proj-2" 
+                    href="/portfolio?query=Skyline" 
                     className="group flex flex-col bg-[#0f131c]/60 backdrop-blur-[20px] rounded-2xl border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors shadow-2xl lg:translate-y-8"
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
@@ -206,7 +206,7 @@ export default function LandingPage() {
 
                   {/* Project 3 */}
                   <Link 
-                    href="/portal/proj-3" 
+                    href="/portfolio?query=Atlas" 
                     className="group flex flex-col bg-[#0f131c]/60 backdrop-blur-[20px] rounded-2xl border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors shadow-2xl lg:translate-y-16"
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
