@@ -3,11 +3,13 @@ import Link from 'next/link';
 import LandingHeader from '@/components/LandingHeader';
 import LandingFooter from '@/components/LandingFooter';
 import CookiePreferencesModal from '@/components/CookiePreferencesModal';
+import { createPageMetadata } from '@/lib/seo/config';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | AtlasBuild Enterprise',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Privacy Policy | AtlasBuild',
   description: 'Enterprise privacy commitment, data security standards, GDPR compliance, and cookie policy for AtlasBuild CMS.',
-};
+  path: '/privacy',
+});
 
 export default function PrivacyPolicyPage() {
   const lastUpdated = 'August 7, 2026';

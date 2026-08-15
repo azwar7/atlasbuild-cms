@@ -1,61 +1,50 @@
+import { SITE_NAME, SITE_URL } from "@/lib/seo/config";
+
 export default function JsonLd() {
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    "name": "AtlasBuild Enterprise Systems Inc.",
-    "alternateName": "AtlasBuild CMS",
-    "url": "https://atlasbuild.com",
-    "logo": "https://atlasbuild.com/images/logo.png",
-    "description": "Enterprise civil solutions and infrastructure platform delivering systematic clarity for large-scale construction data.",
-    "telephone": "+1-800-555-ATLAS",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "100 Infrastructure Blvd, Suite 500",
-      "addressLocality": "San Francisco",
-      "addressRegion": "CA",
-      "postalCode": "94105",
-      "addressCountry": "US"
-    },
-    "knowsAbout": [
-      "Commercial Construction",
-      "Civil Infrastructure",
-      "Industrial Plant Engineering",
-      "Safety EMR Compliance",
-      "Bonding and Project Controls"
+    "@type": "Organization",
+    name: SITE_NAME,
+    alternateName: "AtlasBuild Enterprise Systems",
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/logo.png`,
+    description:
+      "Enterprise construction CMS and client project portal platform for general contractors and civil engineering firms.",
+    knowsAbout: [
+      "Construction Management Software",
+      "Content Management Systems for Construction",
+      "Civil Infrastructure Project Portfolios",
+      "Construction RFP Management",
+      "Contractor Client Portals",
     ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Civil Engineering & RFP Estimating Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "RFP Estimating Wizard"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Client Portal Workspace Telemetry"
-          }
-        }
-      ]
-    }
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    description:
+      "Enterprise construction CMS platform for managing construction company websites, dynamic project showcases, and client portals.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/portfolio?query={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "AtlasBuild CMS",
-    "operatingSystem": "Web, iOS, Android",
-    "applicationCategory": "BusinessApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    name: SITE_NAME,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: SITE_URL,
+    description:
+      "Specialized construction CMS and project lifecycle platform featuring interactive blueprint distribution, AI RFP risk scoring, and milestone tracking.",
   };
 
   return (
@@ -63,6 +52,10 @@ export default function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <script
         type="application/ld+json"

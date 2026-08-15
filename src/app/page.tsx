@@ -1,10 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import FeaturedServicesShowcase from "@/components/FeaturedServicesShowcase";
 import LandingHeader from "@/components/LandingHeader";
 import LandingFooter from "@/components/LandingFooter";
 import CookiePreferencesModal from "@/components/CookiePreferencesModal";
+import { createPageMetadata } from "@/lib/seo/config";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Construction CMS | AtlasBuild",
+  description:
+    "AtlasBuild is an enterprise construction CMS designed for general contractors and civil engineering firms to manage public websites, project portfolios, client portals, and AI RFP intake.",
+  path: "/",
+});
 
 export default function LandingPage() {
   return (
@@ -36,15 +45,15 @@ export default function LandingPage() {
                 <div className="w-full md:w-3/5 flex flex-col gap-8 z-10 bg-[#0f131c]/70 backdrop-blur-[20px] p-10 rounded-2xl border border-white/10 shadow-2xl">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-container/50 rounded-full border border-primary/30 w-fit backdrop-blur-sm">
                     <span className="material-symbols-outlined text-[16px] text-primary">architecture</span>
-                    <span className="text-xs font-label uppercase tracking-widest text-primary font-semibold">Enterprise Civil</span>
+                    <span className="text-xs font-label uppercase tracking-widest text-primary font-semibold">Construction CMS Platform</span>
                   </div>
 
                   <h1 className="text-5xl lg:text-7xl font-headline font-bold text-white leading-[1.1] tracking-tight">
-                    Engineering Enterprise <br /> Civil Solutions
+                    Enterprise Construction CMS <br /> &amp; Civil Platform
                   </h1>
 
                   <p className="text-lg text-on-surface-variant max-w-xl leading-relaxed font-body">
-                    Delivering systematic clarity for large-scale infrastructure and project lifecycle management. Built for data-dense, mission-critical construction environments.
+                    Delivering systematic clarity for construction company websites, dynamic project portfolios, intelligent RFP intake, and client project management.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -154,7 +163,7 @@ export default function LandingPage() {
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
                       <img 
-                        alt="Coastal Bridge Expansion" 
+                        alt="Coastal Bridge Expansion — Transportation Infrastructure Project" 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80" 
                         src="/images/suspension-bridge.jpg" 
                       />
@@ -178,7 +187,7 @@ export default function LandingPage() {
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
                       <img 
-                        alt="Skyline Financial Center" 
+                        alt="Skyline Financial Center — Commercial Steel Core High-Rise Construction" 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80" 
                         src="/images/steel-framing.jpg" 
                       />
@@ -202,7 +211,7 @@ export default function LandingPage() {
                   >
                     <div className="relative w-full h-64 overflow-hidden bg-surface-dim">
                       <img 
-                        alt="Atlas Power Facility" 
+                        alt="Atlas Power Facility — Energy and Utilities Civil Infrastructure" 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80" 
                         src="/images/power-plant.jpg" 
                       />

@@ -53,7 +53,7 @@ export interface AdminSettingsState {
 }
 
 // In-memory server state fallback store
-let currentSettings: AdminSettingsState = {
+const currentSettings: AdminSettingsState = {
   company: {
     name: 'AtlasBuild Enterprise Systems Inc.',
     logoUrl: '/images/logo.png',

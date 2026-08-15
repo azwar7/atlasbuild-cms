@@ -1,11 +1,26 @@
+import type { Metadata } from "next";
 import prisma from "@/shared/lib/db";
 import Link from "next/link";
 import { ProjectSector } from "@/generated/client";
 import LandingHeader from "@/components/LandingHeader";
 import LandingFooter from "@/components/LandingFooter";
 import CookiePreferencesModal from "@/components/CookiePreferencesModal";
+import { createPageMetadata } from "@/lib/seo/config";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Project Portfolio & Case Studies | AtlasBuild",
+  description:
+    "Explore heavy civil engineering, commercial high-rises, and industrial infrastructure projects managed across the AtlasBuild construction CMS platform.",
+  path: "/portfolio",
+  keywords: [
+    "Construction Project Portfolio",
+    "Civil Infrastructure Case Studies",
+    "Commercial Construction Projects",
+    "Contractor Showcase",
+  ],
+});
 
 export default async function PublicPortfolioPage({
   searchParams,

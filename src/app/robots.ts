@@ -1,14 +1,31 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo/config";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://atlasbuild.com";
-
   return {
     rules: {
       userAgent: "*",
-      allow: ["/", "/portfolio", "/quotes", "/careers", "/about"],
-      disallow: ["/dashboard/", "/portal/", "/api/"],
+      allow: [
+        "/",
+        "/portfolio",
+        "/quotes",
+        "/careers",
+        "/about",
+        "/contact",
+        "/privacy",
+        "/terms",
+      ],
+      disallow: [
+        "/dashboard",
+        "/dashboard/",
+        "/portal",
+        "/portal/",
+        "/api",
+        "/api/",
+        "/login",
+      ],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }
+

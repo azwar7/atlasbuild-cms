@@ -1,7 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import LandingHeader from "@/components/LandingHeader";
 import LandingFooter from "@/components/LandingFooter";
 import CookiePreferencesModal from "@/components/CookiePreferencesModal";
+import { createPageMetadata } from "@/lib/seo/config";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Careers in Construction Technology | AtlasBuild",
+  description:
+    "Explore engineering, pre-construction estimation, and site safety management career opportunities with AtlasBuild Enterprise Systems.",
+  path: "/careers",
+  keywords: [
+    "Construction Technology Careers",
+    "Civil Engineering Jobs",
+    "ConTech Hiring",
+    "Pre-Construction Estimator Roles",
+  ],
+});
 
 export default function CareersPage() {
   const jobs = [

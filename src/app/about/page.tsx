@@ -1,7 +1,21 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import LandingHeader from "@/components/LandingHeader";
 import LandingFooter from "@/components/LandingFooter";
 import CookiePreferencesModal from "@/components/CookiePreferencesModal";
+import { createPageMetadata } from "@/lib/seo/config";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "About AtlasBuild | Enterprise Construction CMS Platform",
+  description:
+    "Learn about AtlasBuild CMS, the specialized construction website and client project workspace platform for contractors and civil engineering firms.",
+  path: "/about",
+  keywords: [
+    "About AtlasBuild",
+    "Construction Management Systems",
+    "Civil Engineering Platform",
+    "Enterprise Construction Technology",
+  ],
+});
 
 export default function AboutPage() {
   return (

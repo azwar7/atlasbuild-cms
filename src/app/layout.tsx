@@ -5,32 +5,45 @@ import JsonLd from "@/components/JsonLd";
 import InitialSplashScreen from "@/components/InitialSplashScreen";
 import { AuthProvider } from "@/context/AuthContext";
 
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  DEFAULT_TITLE,
+  SITE_NAME,
+  SITE_URL,
+  TITLE_TEMPLATE,
+} from "@/lib/seo/config";
+
 export const metadata: Metadata = {
   title: {
-    default: "AtlasBuild CMS | Enterprise Civil Infrastructure Platform",
-    template: "%s | AtlasBuild Enterprise",
+    default: DEFAULT_TITLE,
+    template: TITLE_TEMPLATE,
   },
-  description: "Systematic clarity for large-scale infrastructure projects, RFP estimating wizards, and enterprise civil engineering project lifecycle management.",
+  description: DEFAULT_DESCRIPTION,
   keywords: [
-    "Civil Engineering",
-    "Construction Management Platform",
-    "Infrastructure CMS",
-    "RFP Estimating",
-    "Safety EMR Compliance",
-    "Bonding Limit",
+    "Construction CMS",
+    "Construction Website CMS",
+    "Construction Website Builder",
+    "Construction Company Website Software",
+    "Construction Project Portfolio",
+    "Construction RFP Management",
+    "Construction Client Portal",
   ],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://atlasbuild.com"),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "AtlasBuild CMS Enterprise Systems",
-    description: "Engineering Enterprise Civil Solutions & Infrastructure Platform.",
-    url: "https://atlasbuild.com",
-    siteName: "AtlasBuild CMS",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: "/images/hero-night-construction.jpg",
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "AtlasBuild Infrastructure Night Construction Site",
+        alt: "AtlasBuild Construction CMS Platform",
       },
     ],
     locale: "en_US",
@@ -38,13 +51,20 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AtlasBuild CMS Enterprise",
-    description: "Systematic clarity for enterprise civil infrastructure.",
-    images: ["/images/hero-night-construction.jpg"],
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

@@ -79,13 +79,6 @@ function SettingsContent() {
   // Backup state for Cancel/Reset
   const [originalSettings, setOriginalSettings] = useState<AdminSettingsState | null>(null);
 
-  useEffect(() => {
-    const tabFromUrl = searchParams.get('tab') as SettingsTab;
-    if (tabFromUrl && ['general', 'profile', 'notifications', 'security', 'integrations', 'system'].includes(tabFromUrl)) {
-      setActiveTab(tabFromUrl);
-    }
-  }, [searchParams]);
-
   // Fetch initial settings from server API
   useEffect(() => {
     async function fetchSettings() {

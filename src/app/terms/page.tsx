@@ -3,11 +3,13 @@ import Link from 'next/link';
 import LandingHeader from '@/components/LandingHeader';
 import LandingFooter from '@/components/LandingFooter';
 import CookiePreferencesModal from '@/components/CookiePreferencesModal';
+import { createPageMetadata } from '@/lib/seo/config';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | AtlasBuild Enterprise',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Terms of Service | AtlasBuild',
   description: 'Enterprise terms of service, platform usage rules, project data ownership, and governance for AtlasBuild CMS.',
-};
+  path: '/terms',
+});
 
 export default function TermsOfServicePage() {
   const lastUpdated = 'August 7, 2026';
